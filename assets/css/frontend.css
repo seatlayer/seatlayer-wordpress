@@ -1,0 +1,41 @@
+/**
+ * Frontend styles for the SeatLayer chart container.
+ *
+ * Deliberately minimal: the widget brings its own complete UI (and honours the
+ * chart's white-label theme), so anything opinionated here would fight it. This
+ * file only makes the container behave inside arbitrary theme layouts.
+ */
+
+.seatlayer-chart {
+	position: relative;
+	width: 100%;
+	/* Themes with a global `img, iframe { max-width }` rule can otherwise squeeze
+	   the canvas; an explicit min-height keeps the mount from collapsing to 0
+	   before the widget measures itself. */
+	min-height: 320px;
+	overflow: hidden;
+	border-radius: 12px;
+}
+
+.seatlayer-notice,
+.seatlayer-error {
+	box-sizing: border-box;
+	padding: 12px 14px;
+	font-size: 14px;
+	line-height: 20px;
+	border-radius: 9px;
+}
+
+/* Author-only: shown when a block has no event selected. */
+.seatlayer-notice {
+	color: #7a3f16;
+	background: #fdf3e7;
+	border: 1px solid #f0dcc0;
+}
+
+/* Visitor-facing: the chart could not load. */
+.seatlayer-error {
+	color: #7d2418;
+	background: #fcece8;
+	border: 1px solid #eec9c1;
+}
