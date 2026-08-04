@@ -4,13 +4,30 @@ Two destinations, in this order: **GitHub** (source of truth, where issues live)
 and **wordpress.org** (where users actually install from). Nothing below has been
 run — this file is the recipe, not a log.
 
+Read Part 0 first; everything after it is meant to be run start to finish without
+stopping to decide anything.
+
+**The whole sweep, in order:**
+
+| | |
+|---|---|
+| **0** | Two account facts to confirm, and one optional asset call. Nothing to code. |
+| **1** | Verify locally: syntax → Plugin Check → click through it by hand. |
+| **2** | GitHub: create the repo, push, tag `v0.2.0`. |
+| **3** | wp.org: build the zip → submit → *(wait for approval)* → SVN trunk + tag → listing assets. |
+
+The only unbounded wait is plugin review in 3.2. Everything before it is one
+sitting.
+
 ---
 
-## Part 0 — decide these BEFORE you submit anything
+## Part 0 — confirm these BEFORE you submit anything
 
-Three decisions, all cheap now and awkward later. (The slug/text-domain question
-that used to head this list is **settled and applied** — see 0.0 for what was
-decided and how to reverse it.)
+Two account facts and one optional call, all cheap now and awkward later.
+
+The slug/text-domain question that used to head this list is **settled and
+applied in code** — kept here only so the decision is reversible, not because
+anything is pending.
 
 ### 0.0 The slug and text domain — SETTLED, no action needed
 
@@ -89,20 +106,20 @@ Re-lint afterwards (Part 1.1), then re-run Plugin Check (1.2).
 
 </details>
 
-### 0.2 `Contributors: seatlayer` must be a real wordpress.org account
+### 0.1 `Contributors: seatlayer` must be a real wordpress.org account
 
 Not a GitHub account — a wordpress.org one. Confirm
 https://profiles.wordpress.org/seatlayer/ resolves; if it does not, register it
 (or list the account that will actually own the plugin) before submitting. A
 non-existent contributor is a stall in the review queue.
 
-### 0.3 `Tested up to:` must name the current WordPress release
+### 0.2 `Tested up to:` must name the current WordPress release
 
 `readme.txt` says `6.8`. Check the current version at
 https://wordpress.org/download/ and set it to that. A stale value shows users a
 "may not be compatible" warning on the plugin page.
 
-### 0.4 Screenshots — the readme no longer promises any. Optional, recommended.
+### 0.3 Screenshots — the readme no longer promises any. Optional, recommended.
 
 `readme.txt` used to carry a `== Screenshots ==` section listing three images
 that have never existed. **That section has been removed**, deliberately.
@@ -153,14 +170,41 @@ live without each other.
 
 ## Part 1 — verify locally
 
-### 1.1 Syntax
+### 1.1 Syntax and logic — no WordPress needed
 
 ```sh
 cd /Users/paiteq/projects/seatlayer-sdks/wordpress
+
+# Syntax.
 for f in seatlayer.php uninstall.php includes/*.php; do php -l "$f"; done
 node --check assets/js/frontend.js
 node --check assets/js/block.js
+
+# Logic. Both print ALL PASS and exit 0; anything else is a blocker.
+php tests/settings-logic.php
+node tests/frontend-options.js
 ```
+
+The two harnesses stub only what the code under test actually touches, so what
+they exercise is the **real** file rather than a copy that can drift. They are
+`export-ignore`d, so they are not in the zip.
+
+- `tests/settings-logic.php` — the settings class's pure logic: the checkbox
+  sanitizer (an unchecked box arrives as `null` and must mean OFF), the secret-key
+  sanitizer (empty submission KEEPS the stored key, `__remove__` clears it, a bad
+  shape keeps it), the base-URL sanitizer refusing `javascript:`/`data:`/`ftp:`,
+  and `site_origin()` against the exact shape the server stores embed domains in.
+- `tests/frontend-options.js` — runs `frontend.js` against a stub SDK and asserts
+  what a `SeatPicker` is actually constructed with: `returnUrl` sent **only**
+  under hosted checkout and carrying path and query verbatim, never sent in
+  handoff mode, the handoff fallback still wired in both modes, and the
+  no-SDK-on-page path showing one error without marking the container mounted.
+
+**What they cannot prove**, and why 1.2 and 1.3 are not optional: nothing here
+loads WordPress. Hook registration, block registration, the REST route and its
+`edit_posts` gate, `wp_options` round-trips, `uninstall.php` (which only ever
+runs inside WordPress's uninstall path), and every rendered admin screen are all
+untested until an actual install runs them.
 
 ### 1.2 Plugin Check — the real gate
 
@@ -290,11 +334,11 @@ Expect: `seatlayer.php`, `uninstall.php`, `readme.txt`, `LICENSE`, `includes/`,
 
 Manual, and only once:
 
-1. Sign in at https://wordpress.org/plugins/developers/ with the account from 0.2.
+1. Sign in at https://wordpress.org/plugins/developers/ with the account from 0.1.
 2. Go to https://wordpress.org/plugins/developers/add/ and upload
    `seatlayer-seating-charts-0.2.0.zip`.
 3. Wait. Review is a human reading the source, typically days to a few weeks.
-   They will email the account in 0.2 with anything they want changed; reply to
+   They will email the account in 0.1 with anything they want changed; reply to
    that thread with a corrected zip rather than resubmitting through the form.
 
 **Expect them to ask about the CDN script.** Loading executable code from
@@ -343,7 +387,7 @@ svn commit -m "Listing assets"
 The icon is what shows in wp-admin's plugin search, so it is the one asset worth
 not skipping.
 
-**Screenshots are optional and the readme currently promises none** — see 0.4. If
+**Screenshots are optional and the readme currently promises none** — see 0.3. If
 you are adding them, put the `screenshot-N.png` files here **and** the matching
 `== Screenshots ==` captions in `trunk/readme.txt` in the same visit, so the
 listing never renders a caption without its image.
