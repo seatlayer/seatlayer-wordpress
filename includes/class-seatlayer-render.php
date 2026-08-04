@@ -49,7 +49,14 @@ class SeatLayer_Render {
 	 * Register (but do not enqueue) the frontend assets.
 	 */
 	public static function register_assets(): void {
-		wp_register_script( self::HANDLE_SDK, self::sdk_url(), array(), null, true );
+		/*
+		 * `null` version, deliberately: the version is already IN the CDN path
+		 * (`seatlayer-js@0/`), and appending `?ver=` to a third-party URL we do
+		 * not control only risks splitting its cache for no benefit. Plugin Check
+		 * flags a missing version as a warning; this is the case it warns about
+		 * not applying to.
+		 */
+		wp_register_script( self::HANDLE_SDK, self::sdk_url(), array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 
 		wp_register_script(
 			self::HANDLE_FRONTEND,
@@ -101,6 +108,16 @@ class SeatLayer_Render {
 			'currency'     => isset( $atts['currency'] ) ? strtoupper( sanitize_text_field( (string) $atts['currency'] ) ) : '',
 			'apiBase'      => SeatLayer_Settings::api_base(),
 			'appBase'      => SeatLayer_Settings::app_base(),
+			/*
+			 * Buyer-facing strings are translated HERE and travel with the config,
+			 * rather than being hardcoded in frontend.js. That keeps every string
+			 * the plugin can show translatable without adding `wp-i18n` (and a JSON
+			 * translation file per locale) to a script that loads on public pages.
+			 */
+			'i18n'         => array(
+				'sdkUnreachable' => __( 'Seating chart could not load. Check that cdn.seatlayer.io is reachable from this page.', 'seatlayer' ),
+				'chartFailed'    => __( 'This seating chart is unavailable right now.', 'seatlayer' ),
+			),
 		);
 	}
 

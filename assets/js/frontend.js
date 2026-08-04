@@ -30,7 +30,23 @@
 		}
 	}
 
+	/**
+	 * A translated string from the server-side config, or an English fallback if
+	 * this page was rendered by an older version of the plugin.
+	 */
+	function text( config, key, fallback ) {
+		return ( config && config.i18n && config.i18n[ key ] ) || fallback;
+	}
+
 	function showError( node, message ) {
+		// One error box per container. Without this, a page builder re-dispatching
+		// `seatlayer:refresh` after a failed mount stacks the same message again
+		// and again down the page.
+		var existing = node.querySelector( ':scope > .seatlayer-error' );
+		if ( existing ) {
+			existing.textContent = message;
+			return;
+		}
 		var box = document.createElement( 'div' );
 		box.className = 'seatlayer-error';
 		// textContent, not innerHTML: `message` can carry an event key that came
@@ -53,7 +69,11 @@
 		if ( ! sdk || typeof sdk.SeatPicker !== 'function' ) {
 			showError(
 				node,
-				'Seating chart could not load. Check that cdn.seatlayer.io is reachable from this page.'
+				text(
+					config,
+					'sdkUnreachable',
+					'Seating chart could not load. Check that cdn.seatlayer.io is reachable from this page.'
+				)
 			);
 			return;
 		}
@@ -102,7 +122,10 @@
 		var rendered = picker.render();
 		if ( rendered && typeof rendered.catch === 'function' ) {
 			rendered.catch( function () {
-				showError( node, 'This seating chart is unavailable right now.' );
+				showError(
+					node,
+					text( config, 'chartFailed', 'This seating chart is unavailable right now.' )
+				);
 			} );
 		}
 	}

@@ -89,6 +89,46 @@ check it.
 
 The chart's code only loads on pages that actually contain a chart.
 
+== External services ==
+
+This plugin is a client for SeatLayer, a hosted seating and ticketing service. It
+does not work standalone, and using it means your site and your visitors talk to
+SeatLayer. Exactly what is sent, and when:
+
+**cdn.seatlayer.io** — the seating chart renderer.
+
+* When: only on pages that actually contain a chart. The browser loads
+  `https://cdn.seatlayer.io/seatlayer-js@0/seatlayer.js`.
+* Sent: nothing the plugin adds. As with any script request, the browser sends
+  its own IP address, user agent, and referring page.
+
+**api.seatlayer.io** — seat availability, seat holds, and payment sessions.
+
+* When (visitor): as soon as a chart renders, to fetch the seating layout and
+  live availability; then when a visitor selects seats, to hold them; then, if
+  they buy, to start a payment.
+* Sent (visitor): the event key, the seats selected, and — at the payment step
+  only — the buyer's email address and, if given, their name. A payment is
+  started with the hold identifier alone: the plugin never sends an amount, and
+  the SeatLayer server recomputes the total from its own records.
+* When (administrator): only if you save a secret key, and only inside the block
+  editor, to list your events in a dropdown. Your server makes this call, not the
+  browser, and the key is never sent to a browser.
+* Sent (administrator): your secret key. No visitor data.
+
+**app.seatlayer.io** — the hosted buyer page, used in the default handoff mode.
+
+* When: only if a buyer chooses to check out. Their browser is redirected to
+  `https://app.seatlayer.io/e/EVENT?hold=HOLD_ID`.
+* Sent: the event key and the hold identifier, in the URL. No amount, and nothing
+  about the buyer.
+
+Card details are handled by Stripe or Razorpay on the account **you** connected.
+They never pass through this plugin, your WordPress site, or your database.
+
+Service terms: https://seatlayer.io/terms
+Privacy policy: https://seatlayer.io/privacy
+
 == Screenshots ==
 
 1. A seating chart on a WordPress page.

@@ -201,7 +201,7 @@ class SeatLayer_Settings {
 								value=""
 								class="regular-text"
 								autocomplete="off"
-								placeholder="<?php echo $has_key ? esc_attr__( 'Saved — leave blank to keep', 'seatlayer' ) : 'sk_live_…'; ?>"
+								placeholder="<?php echo $has_key ? esc_attr__( 'Saved — leave blank to keep', 'seatlayer' ) : esc_attr( 'sk_live_…' ); ?>"
 							/>
 							<p class="description" style="max-width:44em;">
 								<?php
