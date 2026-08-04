@@ -109,6 +109,31 @@ class SeatLayer_Render {
 			'apiBase'      => SeatLayer_Settings::api_base(),
 			'appBase'      => SeatLayer_Settings::app_base(),
 			/*
+			 * Site-wide, not per-chart. Whether a buyer can pay in place is a
+			 * property of the ACCOUNT and this site's declared origin — it is the
+			 * same answer for every chart on the site, so making it a shortcode
+			 * attribute would only invite two pages to disagree about a fact
+			 * neither of them owns.
+			 */
+			'hostedCheckout' => SeatLayer_Settings::hosted_checkout(),
+			/*
+			 * NO `returnUrl` IS SENT, AND THAT IS ON PURPOSE.
+			 *
+			 * SeatLayer's checkout endpoint now accepts one, validated against the
+			 * origins an account declared in advance. It would be the obvious thing
+			 * to pass this site's address here. It is wrong today, for a reason
+			 * that is easy to miss: the server keeps only the ORIGIN of what it is
+			 * given and appends its own fixed path — `/e/{eventId}?order=…` — which
+			 * is a page that exists on SeatLayer's app and nowhere on a WordPress
+			 * site. Sending it would return a buyer who has just paid to a 404 on
+			 * their own site, which is strictly worse than returning them to a
+			 * working confirmation page belonging to someone else.
+			 *
+			 * So the redirect gateways keep finishing on SeatLayer's page. When the
+			 * server can be told a full return PATH (or the widget forwards one),
+			 * this becomes a one-line change here.
+			 */
+			/*
 			 * Buyer-facing strings are translated HERE and travel with the config,
 			 * rather than being hardcoded in frontend.js. That keeps every string
 			 * the plugin can show translatable without adding `wp-i18n` (and a JSON

@@ -4,7 +4,7 @@ Tags: seating chart, reserved seating, event tickets, ticketing, seat selection
 Requires at least: 6.3
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -89,6 +89,23 @@ check it.
 
 The chart's code only loads on pages that actually contain a chart.
 
+= Can buyers pay without leaving my site? =
+
+Partly, and it is off by default. Under **Settings → SeatLayer** you can switch
+Checkout to "Let buyers pay without leaving this site". Two caveats worth reading
+before you do:
+
+* Your SeatLayer account needs in-page checkout enabled — it is granted per
+  account. Without it the setting quietly does nothing and buyers take the normal
+  redirect, so turning it on early cannot break anything.
+* Razorpay collects payment entirely on your page. Stripe cards still open
+  Stripe's own page, and afterwards return the buyer to SeatLayer rather than to
+  your site. Either way the seats are sold and the tickets are emailed.
+
+While you are there, add your site to your SeatLayer account's embed domains,
+using the exact address the settings screen shows you. It is what will let Stripe
+buyers return to your site once that last step is supported.
+
 == External services ==
 
 This plugin is a client for SeatLayer, a hosted seating and ticketing service. It
@@ -123,6 +140,18 @@ SeatLayer. Exactly what is sent, and when:
 * Sent: the event key and the hold identifier, in the URL. No amount, and nothing
   about the buyer.
 
+**checkout.stripe.com / checkout.razorpay.com** — the payment step, and only if
+you switch Checkout to "Let buyers pay without leaving this site".
+
+* When: only after a buyer has selected seats and pressed pay. Razorpay's script
+  is loaded into your page to open its payment window; Stripe redirects the
+  buyer to its own page.
+* Sent: what the gateway needs to charge — the amount and currency, which
+  SeatLayer computed, plus the buyer's email. Your site does not send this; the
+  payment window and the redirect are set up by SeatLayer and your own gateway
+  account.
+* Stripe: https://stripe.com/privacy — Razorpay: https://razorpay.com/privacy
+
 Card details are handled by Stripe or Razorpay on the account **you** connected.
 They never pass through this plugin, your WordPress site, or your database.
 
@@ -137,6 +166,15 @@ Privacy policy: https://seatlayer.io/privacy
 
 == Changelog ==
 
+= 0.2.0 =
+* New: an optional Checkout setting that lets buyers pay on your page instead of
+  being sent to SeatLayer. Off by default, and it falls back to the redirect on
+  its own if your account does not have in-page checkout.
+* Deleting the plugin now removes its settings, including any saved secret key.
+* The two messages a visitor can see if a chart fails to load are translatable.
+* Documented every SeatLayer service the plugin talks to, and what is sent.
+
 = 0.1.0 =
-* First release: SeatLayer block and `[seatlayer_chart]` shortcode, with hosted
-  checkout through your own Stripe or Razorpay account.
+* First release: SeatLayer block and `[seatlayer_chart]` shortcode. Buyers are
+  handed to SeatLayer's buyer page to pay through your own Stripe or Razorpay
+  account.

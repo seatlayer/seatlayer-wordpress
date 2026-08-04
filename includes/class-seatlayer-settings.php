@@ -31,6 +31,7 @@ class SeatLayer_Settings {
 	const OPTION_KEY    = 'seatlayer_secret_key';
 	const OPTION_API    = 'seatlayer_api_base';
 	const OPTION_APP    = 'seatlayer_app_base';
+	const OPTION_HOSTED = 'seatlayer_hosted_checkout';
 	const DEFAULT_API   = 'https://api.seatlayer.io';
 	const DEFAULT_APP   = 'https://app.seatlayer.io';
 
@@ -69,6 +70,52 @@ class SeatLayer_Settings {
 	}
 
 	/**
+	 * Should the buyer pay on the WordPress page instead of being redirected?
+	 *
+	 * Default FALSE. Turning this on has prerequisites the plugin cannot check
+	 * from here (see `render_page()`), and the redirect path works for everyone,
+	 * so an existing install must keep behaving exactly as it did.
+	 */
+	public static function hosted_checkout(): bool {
+		$value = get_option( self::OPTION_HOSTED, '' );
+		// Scalar check before the cast: a corrupted or hand-edited option row can
+		// hold an array, and casting one to string is a PHP warning in the log of
+		// every page that renders a chart.
+		return is_scalar( $value ) && '1' === (string) $value;
+	}
+
+	/**
+	 * This site's origin, in the exact shape SeatLayer stores embed domains in:
+	 * `scheme://host[:port]`, lowercased, no path.
+	 *
+	 * Built by hand from the parsed parts rather than by trimming `home_url()`,
+	 * because a site installed in a subdirectory has a path that must not survive
+	 * — `https://example.com/blog` and `https://example.com` are one origin, and
+	 * an admin copying the wrong one gets a silent non-match at payment time.
+	 */
+	public static function site_origin(): string {
+		$parts = wp_parse_url( home_url() );
+		if ( ! is_array( $parts ) || empty( $parts['scheme'] ) || empty( $parts['host'] ) ) {
+			return '';
+		}
+
+		$origin = strtolower( $parts['scheme'] ) . '://' . strtolower( $parts['host'] );
+
+		// Default ports are elided on the server side, so including them here
+		// would produce a string that never matches.
+		if ( ! empty( $parts['port'] ) ) {
+			$port = (int) $parts['port'];
+			$is_default = ( 'https' === strtolower( $parts['scheme'] ) && 443 === $port )
+				|| ( 'http' === strtolower( $parts['scheme'] ) && 80 === $port );
+			if ( ! $is_default ) {
+				$origin .= ':' . $port;
+			}
+		}
+
+		return $origin;
+	}
+
+	/**
 	 * Add the settings page under Settings.
 	 */
 	public static function add_menu(): void {
@@ -93,6 +140,17 @@ class SeatLayer_Settings {
 				'sanitize_callback' => array( __CLASS__, 'sanitize_secret_key' ),
 				'default'           => '',
 				// Never expose a credential through the REST options endpoint.
+				'show_in_rest'      => false,
+			)
+		);
+
+		register_setting(
+			self::OPTION_GROUP,
+			self::OPTION_HOSTED,
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => array( __CLASS__, 'sanitize_checkbox' ),
+				'default'           => '',
 				'show_in_rest'      => false,
 			)
 		);
@@ -145,6 +203,24 @@ class SeatLayer_Settings {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Sanitize a checkbox to '1' or ''.
+	 *
+	 * An unchecked box submits nothing, and WordPress hands this callback `null`
+	 * in that case — which is precisely how "off" arrives. Unlike the secret key,
+	 * an absent value here must NOT keep the stored one, or the box could never
+	 * be turned back off.
+	 *
+	 * Anything that is not the scalar '1' is off, including an array: a POST can
+	 * name any field as `option[]`, and casting that to string is a PHP warning
+	 * rather than a decision.
+	 *
+	 * @param mixed $value Raw submitted value.
+	 */
+	public static function sanitize_checkbox( $value ): string {
+		return ( is_scalar( $value ) && '1' === (string) $value ) ? '1' : '';
 	}
 
 	/**
@@ -227,6 +303,67 @@ class SeatLayer_Settings {
 									</label>
 								</p>
 							<?php endif; ?>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Checkout', 'seatlayer' ); ?></th>
+						<td>
+							<label>
+								<input
+									type="checkbox"
+									name="<?php echo esc_attr( self::OPTION_HOSTED ); ?>"
+									value="1"
+									<?php checked( self::hosted_checkout() ); ?>
+								/>
+								<?php esc_html_e( 'Let buyers pay without leaving this site', 'seatlayer' ); ?>
+							</label>
+							<p class="description" style="max-width:44em;">
+								<?php
+								esc_html_e(
+									'Off by default. Buyers are sent to SeatLayer to pay, then return with their tickets. Turn this on and the payment step appears on this page instead.',
+									'seatlayer'
+								);
+								?>
+							</p>
+
+							<p class="description" style="max-width:44em;">
+								<strong><?php esc_html_e( 'Requires:', 'seatlayer' ); ?></strong>
+								<?php
+								esc_html_e(
+									'in-page checkout enabled on your SeatLayer account. It is granted per account — ask SeatLayer if you are not sure. Without it this setting quietly does nothing and buyers take the normal redirect, so switching it on early breaks nothing.',
+									'seatlayer'
+								);
+								?>
+							</p>
+
+							<p class="description" style="max-width:44em;">
+								<strong><?php esc_html_e( 'What this changes, honestly:', 'seatlayer' ); ?></strong>
+								<?php
+								esc_html_e(
+									'Razorpay collects payment entirely on this page. Stripe cards still open Stripe\'s own page and return the buyer to SeatLayer afterwards rather than here — that last hop is not something this plugin can fix yet. Either way the seats are sold and the tickets are emailed.',
+									'seatlayer'
+								);
+								?>
+							</p>
+
+							<p class="description" style="max-width:44em;">
+								<?php
+								esc_html_e(
+									'Worth doing now: add this site to your SeatLayer account\'s embed domains, exactly as shown. It is what will let Stripe buyers come back here once that last hop is supported, and it is harmless before then.',
+									'seatlayer'
+								);
+								?>
+								<br />
+								<code><?php echo esc_html( self::site_origin() ); ?></code>
+								<br />
+								<?php
+								esc_html_e(
+									'Copy the whole line. The match is exact — no wildcards, and http and https count as different entries.',
+									'seatlayer'
+								);
+								?>
+							</p>
 						</td>
 					</tr>
 

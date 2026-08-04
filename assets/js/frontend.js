@@ -1,12 +1,16 @@
 /**
  * Mounts a SeatLayer picker into every `.seatlayer-chart` container on the page.
  *
- * The whole buyer flow after seat selection is SeatLayer's, not WordPress's: the
- * widget creates the hold, and `onCheckout` hands off to the hosted checkout on
- * app.seatlayer.io, where the organizer's own Stripe or Razorpay account takes
- * the money. So this file is a mount shim, and deliberately nothing more — no
- * cart, no order state, no price arithmetic. Those all belong to the side that
- * can be trusted with them.
+ * The whole buyer flow after seat selection is SeatLayer's, not WordPress's. The
+ * widget creates the hold, and then one of two things happens depending on the
+ * site's Checkout setting: by default `onCheckout` hands off to the buyer page on
+ * app.seatlayer.io, or — when the owner opted in and the account supports it —
+ * the widget collects payment on this page itself. Either way the organizer's own
+ * Stripe or Razorpay account takes the money.
+ *
+ * So this file is a mount shim, and deliberately nothing more — no cart, no order
+ * state, no price arithmetic. Those all belong to the side that can be trusted
+ * with them.
  *
  * Configuration arrives on a `data-seatlayer` attribute rather than an inline
  * script tag, so the plugin emits no inline JavaScript and works on sites with a
@@ -86,13 +90,26 @@
 			maxSelection: config.maxSelection || 10,
 			confirmSelection: true,
 			/**
-			 * Seats are chosen; send the buyer to SeatLayer's hosted checkout.
+			 * Seats are chosen; send the buyer to SeatLayer's buyer page to pay.
+			 *
+			 * This is the default path AND the fallback for in-page checkout, so it
+			 * stays wired in both modes and must keep working unchanged.
 			 *
 			 * The hold id is the only thing passed along — never an amount. The
 			 * server recomputes the total from its own hold records, which is what
 			 * makes it impossible for a page on this site (or anyone editing it) to
 			 * change what a buyer pays.
 			 */
+			/**
+			 * Seats are chosen and hosted checkout could not run for this event.
+			 *
+			 * Not an error, and deliberately silent: the buyer is mid-purchase with
+			 * seats held, `onCheckout` fires straight after this with the same hold,
+			 * and the redirect below picks them up. Supplying this handler at all is
+			 * what stops the widget from showing its own dead-end card on a page
+			 * that has a perfectly good next step.
+			 */
+			onCheckoutUnavailable: function () {},
 			onCheckout: function ( hold, seats, handoff ) {
 				var holdId = ( handoff && handoff.holdId ) || ( hold && hold.holdId );
 				if ( ! holdId ) {
@@ -107,6 +124,23 @@
 				window.location.assign( url );
 			},
 		};
+
+		/**
+		 * Pay on THIS page instead of being sent to SeatLayer, when the site owner
+		 * has asked for it (Settings → SeatLayer) and the account actually has it.
+		 *
+		 * Nothing here checks whether the account has it, because the widget
+		 * already asks the server and falls back to the handoff above on its own.
+		 * That fallback is the reason this is a plain boolean and not a wizard: the
+		 * worst outcome of switching it on too early is the behaviour you already
+		 * had.
+		 *
+		 * An SDK older than 0.38 has no `checkout` option and ignores this, which
+		 * lands in exactly the same place.
+		 */
+		if ( config.hostedCheckout ) {
+			options.checkout = 'hosted';
+		}
 
 		if ( config.apiBase ) {
 			options.apiBase = config.apiBase;
