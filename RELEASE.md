@@ -172,6 +172,19 @@ same throwaway install:
 - Select seats and check out against an event with a **test-mode** gateway.
 - Tick the Checkout setting and repeat. Confirm the fallback: with an account
   that does not have in-page checkout, the buyer must still get the redirect.
+- **The return trip, both ways round.** This is the one behaviour that cannot be
+  proven without a real gateway, so prove it here. With the Checkout setting on
+  and a **test-mode Stripe** event:
+  - First declare this site under **Embed domains** in the SeatLayer dashboard,
+    copying the address the settings screen prints verbatim. Buy a seat. The
+    buyer must land back on the WordPress page, with `?order=…&status=success`
+    appended and any query string the page already had still intact.
+  - Then remove that embed domain and buy again. The buyer must still complete
+    the purchase and still receive tickets — finishing on SeatLayer's own page.
+    A failed payment, or an error, means the fallback is broken and is a release
+    blocker; finishing on SeatLayer's page is the correct degraded behaviour.
+  - Razorpay is unaffected by either — it never navigates away. Confirm it still
+    completes in place.
 - Delete the plugin from the Plugins screen and confirm the options are gone:
   `npx @wordpress/env run cli wp option get seatlayer_secret_key` → error.
 

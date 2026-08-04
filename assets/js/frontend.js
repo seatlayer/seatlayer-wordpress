@@ -140,6 +140,34 @@
 		 */
 		if ( config.hostedCheckout ) {
 			options.checkout = 'hosted';
+
+			/**
+			 * Bring the buyer back to THIS page after a redirecting gateway.
+			 *
+			 * Without it, someone who pays by card leaves for Stripe and is
+			 * confirmed on SeatLayer's buyer page — a working page, but not the
+			 * seller's, and the end of their visit to this site.
+			 *
+			 * `window.location.href` whole, not just the origin: the server keeps
+			 * the URL verbatim, path and query included, and stamps only
+			 * `order` and `status` onto it via searchParams — so existing query
+			 * state survives and returning twice cannot duplicate the stamp. Read
+			 * here rather than rendered by PHP because this container is cacheable
+			 * (see normalize() in class-seatlayer-render.php).
+			 *
+			 * THIS IS A REQUEST, NOT AN INSTRUCTION. The server honours it only if
+			 * this site's origin is declared under Embed domains on the SeatLayer
+			 * account; an undeclared origin is IGNORED, not refused. So the failure
+			 * mode of a missing entry is a buyer who finishes on SeatLayer's page —
+			 * exactly today's behaviour — and never a lost sale. That asymmetry is
+			 * why this is sent unconditionally under hosted checkout instead of
+			 * being hidden behind another setting the admin would have to get right.
+			 *
+			 * In-page gateways (Razorpay) never navigate away, so this is inert for
+			 * them. An SDK older than 0.41 has no `returnUrl` and ignores it,
+			 * landing where it does today.
+			 */
+			options.returnUrl = window.location.href;
 		}
 
 		if ( config.apiBase ) {

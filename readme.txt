@@ -98,13 +98,19 @@ before you do:
 * Your SeatLayer account needs in-page checkout enabled — it is granted per
   account. Without it the setting quietly does nothing and buyers take the normal
   redirect, so turning it on early cannot break anything.
-* Razorpay collects payment entirely on your page. Stripe cards still open
-  Stripe's own page, and afterwards return the buyer to SeatLayer rather than to
-  your site. Either way the seats are sold and the tickets are emailed.
+* Razorpay collects payment entirely on your page — the buyer never leaves.
+  Stripe cards still open Stripe's own page, but the buyer then comes back to the
+  page they bought from. Either way the seats are sold and the tickets are
+  emailed.
 
-While you are there, add your site to your SeatLayer account's embed domains,
-using the exact address the settings screen shows you. It is what will let Stripe
-buyers return to your site once that last step is supported.
+For that return trip, add your site to your SeatLayer account's embed domains,
+using the exact address the settings screen shows you. SeatLayer only returns
+buyers to addresses you have declared in advance, which is what stops a return
+address from sending a paying customer somewhere you did not sanction.
+
+If you skip it you lose the return trip and nothing else: an undeclared address
+is ignored, not refused. The buyer still pays, the seats are still sold, and the
+tickets are still emailed — they simply finish on SeatLayer's page.
 
 == External services ==
 
@@ -128,6 +134,11 @@ SeatLayer. Exactly what is sent, and when:
   only — the buyer's email address and, if given, their name. A payment is
   started with the hold identifier alone: the plugin never sends an amount, and
   the SeatLayer server recomputes the total from its own records.
+* Also sent, only when Checkout is set to "Let buyers pay without leaving this
+  site": the web address of the page the chart is on, so a buyer returning from
+  Stripe lands back on it. It is the page's own public URL and nothing else — no
+  visitor data. SeatLayer uses it only if it matches an embed domain you declared
+  in advance, and otherwise ignores it.
 * When (administrator): only if you save a secret key, and only inside the block
   editor, to list your events in a dropdown. Your server makes this call, not the
   browser, and the key is never sent to a browser.
@@ -170,6 +181,10 @@ Privacy policy: https://seatlayer.io/privacy
 * New: an optional Checkout setting that lets buyers pay on your page instead of
   being sent to SeatLayer. Off by default, and it falls back to the redirect on
   its own if your account does not have in-page checkout.
+* With that setting on, a buyer paying by card now returns to the page they
+  bought from instead of finishing on SeatLayer. Declare your site under embed
+  domains in your SeatLayer dashboard to switch it on; without it the buyer still
+  pays and still gets their tickets, just on SeatLayer's page.
 * Deleting the plugin now removes its settings, including any saved secret key.
 * The two messages a visitor can see if a chart fails to load are translatable.
 * Documented every SeatLayer service the plugin talks to, and what is sent.

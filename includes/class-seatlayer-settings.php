@@ -341,16 +341,17 @@ class SeatLayer_Settings {
 								<strong><?php esc_html_e( 'What this changes, honestly:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
-									'Razorpay collects payment entirely on this page. Stripe cards still open Stripe\'s own page and return the buyer to SeatLayer afterwards rather than here — that last hop is not something this plugin can fix yet. Either way the seats are sold and the tickets are emailed.',
+									'Razorpay collects payment entirely on this page — the buyer never leaves. Stripe cards still open Stripe\'s own page, but the buyer now returns to this exact page afterwards instead of finishing on SeatLayer. That return needs the one step below.',
 									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
 
 							<p class="description" style="max-width:44em;">
+								<strong><?php esc_html_e( 'Do this, or the return is ignored:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
-									'Worth doing now: add this site to your SeatLayer account\'s embed domains, exactly as shown. It is what will let Stripe buyers come back here once that last hop is supported, and it is harmless before then.',
+									'In your SeatLayer dashboard, add this site to your account\'s embed domains, exactly as shown:',
 									'seatlayer-seating-charts'
 								);
 								?>
@@ -360,6 +361,15 @@ class SeatLayer_Settings {
 								<?php
 								esc_html_e(
 									'Copy the whole line. The match is exact — no wildcards, and http and https count as different entries.',
+									'seatlayer-seating-charts'
+								);
+								?>
+							</p>
+
+							<p class="description" style="max-width:44em;">
+								<?php
+								esc_html_e(
+									'Skipping it costs you nothing but the return trip. SeatLayer ignores a return address it was not told about rather than refusing the payment, so the buyer still pays, the seats are still sold, and the tickets are still emailed — they just finish on SeatLayer\'s page instead of back here.',
 									'seatlayer-seating-charts'
 								);
 								?>

@@ -101,21 +101,25 @@ class SeatLayer_Render {
 		$max_selection = max( 1, min( 50, $max_selection ) );
 
 		/*
-		 * NOTHING HERE IS A `returnUrl`, AND THAT IS ON PURPOSE.
+		 * THE `returnUrl` IS NOT BUILT HERE — frontend.js reads
+		 * `window.location.href` at mount time instead. That is a correctness
+		 * choice rather than a stylistic one.
 		 *
-		 * SeatLayer's checkout endpoint now accepts one, validated against the
-		 * origins an account declared in advance, and passing this site's address
-		 * looks like exactly what it is for. It is wrong today, for a reason that
-		 * is easy to miss: the server keeps only the ORIGIN of what it is given
-		 * and appends its own fixed path — `/e/{eventId}?order=…` — which is a
-		 * page on SeatLayer's app and nowhere on a WordPress site. Sending it
-		 * would return a buyer who has just paid to a 404 on their own domain,
-		 * which is strictly worse than returning them to a working confirmation
-		 * page belonging to someone else.
+		 * This markup is CACHEABLE. A page cache, a CDN, or any static-HTML plugin
+		 * serves one rendered copy of this container to every visitor, so a URL
+		 * baked in at render time is whatever address the page had when the cache
+		 * was warmed — the wrong page for anyone who arrives on a paginated
+		 * permalink, a query string, or any variant of it. Read in the browser, it
+		 * is always the page the buyer is actually standing on.
 		 *
-		 * So redirect gateways keep finishing on SeatLayer's page. When the server
-		 * accepts a full return PATH (or the widget forwards one), this becomes a
-		 * one-line change here.
+		 * (Building it from `home_url()` plus `$_SERVER['REQUEST_URI']` would also
+		 * mean feeding a request header into a URL that a payment later redirects
+		 * to. The server ignores anything outside the account's declared origins,
+		 * so it is not exploitable — but it buys nothing over reading it client
+		 * side, and it is not a habit worth forming.)
+		 *
+		 * `hostedCheckout` below is the gate: a returnUrl is only ever consulted by
+		 * a redirecting gateway under hosted checkout, so handoff mode sends none.
 		 */
 		return array(
 			'event'          => $event,
