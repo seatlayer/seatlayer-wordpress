@@ -102,19 +102,52 @@ non-existent contributor is a stall in the review queue.
 https://wordpress.org/download/ and set it to that. A stale value shows users a
 "may not be compatible" warning on the plugin page.
 
-### 0.4 Screenshots must exist before the listing goes live
+### 0.4 Screenshots — the readme no longer promises any. Optional, recommended.
 
-`readme.txt` lists three. They do **not** live in this repository — wp.org reads
-them from the SVN `assets/` directory (Part 3.4). Produce them first, at
-1280×720 or larger, named `screenshot-1.png`, `screenshot-2.png`,
-`screenshot-3.png`, matching the captions in the readme in order:
+`readme.txt` used to carry a `== Screenshots ==` section listing three images
+that have never existed. **That section has been removed**, deliberately.
 
-1. A seating chart on a WordPress page.
+The reasoning, so it can be overruled knowingly: screenshot files do not live in
+this repository and are not in the plugin zip — wp.org reads them from the SVN
+`assets/` directory, which you only get **after** approval (Part 3.4, which comes
+after 3.3). A readme that names three screenshots renders three broken images on
+the public plugin page for as long as the files are missing, and the natural
+order of the steps below guarantees a window where they are. Between a listing
+with no screenshots (unremarkable — plenty of good plugins have none) and a
+listing with three broken images (looks abandoned), the empty one is the honest
+default, and it is the one that stays correct if this step is never done.
+
+They are still worth adding, and adding them is four lines. To do it:
+
+**1. Capture them.** Needs a running WordPress with the plugin active and a real
+event — the same throwaway install from 1.2/1.3 is fine. Requirements:
+
+| | |
+|---|---|
+| Location | SVN `assets/` (sibling of `trunk/`, **not** shipped to users) |
+| Filenames | `screenshot-1.png`, `screenshot-2.png`, … — lowercase, numbered from 1, no gaps |
+| Formats | PNG, JPG, or GIF. PNG for UI. |
+| Size | No hard limit is enforced. wp.org displays them about 772px wide, so shoot **1544px wide or more** (2× for high-DPI) and keep every shot the same aspect ratio — mismatched ratios make the gallery jump. |
+
+Shoot the frontend chart on a desktop viewport with real seat colours visible —
+that one is the reason someone installs this — and crop out browser chrome and
+any test data that reads as placeholder.
+
+**2. Put the captions back** in `readme.txt`, immediately above `== Changelog ==`.
+The list is positional: item *N* captions `screenshot-N.png`, so the order must
+match the filenames exactly and a gap silently shifts every caption after it.
+
+```
+== Screenshots ==
+
+1. A seating chart on a WordPress page, with live availability.
 2. Choosing the event in the block editor.
-3. Plugin settings.
+3. The settings screen, including the optional in-page checkout.
+```
 
-Until they are uploaded the listing shows three broken images. Either supply
-them or delete the `== Screenshots ==` section — do not ship the section empty.
+**3. Commit them to SVN** in the same session as the `trunk/` commit that
+contains the matching readme (Part 3.4), so the captions and the files are never
+live without each other.
 
 ---
 
@@ -296,17 +329,24 @@ svn commit -m "Tag 0.2.0"
 
 ### 3.4 Listing assets
 
-Banners, icon, and the screenshots from 0.4 go in `assets/`, which is a sibling
-of `trunk/` and is **not** shipped to users.
+Banners, icon, and any screenshots go in `assets/`, which is a sibling of
+`trunk/` and is **not** shipped to users.
 
 ```sh
 cd ~/seatlayer-svn
 # assets/banner-1544x500.png, assets/banner-772x250.png
 # assets/icon-256x256.png,   assets/icon-128x128.png
-# assets/screenshot-1.png, screenshot-2.png, screenshot-3.png
 svn add --force assets
 svn commit -m "Listing assets"
 ```
+
+The icon is what shows in wp-admin's plugin search, so it is the one asset worth
+not skipping.
+
+**Screenshots are optional and the readme currently promises none** — see 0.4. If
+you are adding them, put the `screenshot-N.png` files here **and** the matching
+`== Screenshots ==` captions in `trunk/readme.txt` in the same visit, so the
+listing never renders a caption without its image.
 
 ---
 

@@ -169,12 +169,6 @@ They never pass through this plugin, your WordPress site, or your database.
 Service terms: https://seatlayer.io/terms
 Privacy policy: https://seatlayer.io/privacy
 
-== Screenshots ==
-
-1. A seating chart on a WordPress page.
-2. Choosing the event in the block editor.
-3. Plugin settings.
-
 == Changelog ==
 
 = 0.2.0 =
