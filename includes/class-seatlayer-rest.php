@@ -51,7 +51,7 @@ class SeatLayer_REST {
 					'refresh' => array(
 						'type'        => 'boolean',
 						'default'     => false,
-						'description' => __( 'Bypass the short server-side cache.', 'seatlayer' ),
+						'description' => __( 'Bypass the short server-side cache.', 'seatlayer-seating-charts' ),
 					),
 				),
 			)

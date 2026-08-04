@@ -53,22 +53,22 @@ class SeatLayer_Block {
 		);
 
 		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( self::HANDLE, 'seatlayer' );
+			wp_set_script_translations( self::HANDLE, 'seatlayer-seating-charts' );
 		}
 
 		register_block_type(
 			'seatlayer/chart',
 			array(
 				'api_version'     => 2,
-				'title'           => __( 'SeatLayer seating chart', 'seatlayer' ),
-				'description'     => __( 'Let visitors pick seats and buy tickets.', 'seatlayer' ),
+				'title'           => __( 'SeatLayer seating chart', 'seatlayer-seating-charts' ),
+				'description'     => __( 'Let visitors pick seats and buy tickets.', 'seatlayer-seating-charts' ),
 				'category'        => 'embed',
 				'icon'            => 'tickets-alt',
 				'keywords'        => array(
-					__( 'seating', 'seatlayer' ),
-					__( 'tickets', 'seatlayer' ),
-					__( 'seats', 'seatlayer' ),
-					__( 'events', 'seatlayer' ),
+					__( 'seating', 'seatlayer-seating-charts' ),
+					__( 'tickets', 'seatlayer-seating-charts' ),
+					__( 'seats', 'seatlayer-seating-charts' ),
+					__( 'events', 'seatlayer-seating-charts' ),
 				),
 				'editor_script'   => self::HANDLE,
 				'attributes'      => array(

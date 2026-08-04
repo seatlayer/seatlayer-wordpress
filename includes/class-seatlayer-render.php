@@ -139,8 +139,8 @@ class SeatLayer_Render {
 			 * translation file per locale) to a script that loads on public pages.
 			 */
 			'i18n'           => array(
-				'sdkUnreachable' => __( 'Seating chart could not load. Check that cdn.seatlayer.io is reachable from this page.', 'seatlayer' ),
-				'chartFailed'    => __( 'This seating chart is unavailable right now.', 'seatlayer' ),
+				'sdkUnreachable' => __( 'Seating chart could not load. Check that cdn.seatlayer.io is reachable from this page.', 'seatlayer-seating-charts' ),
+				'chartFailed'    => __( 'This seating chart is unavailable right now.', 'seatlayer-seating-charts' ),
 			),
 		);
 	}
@@ -162,7 +162,7 @@ class SeatLayer_Render {
 			// not put plugin diagnostics on a public page.
 			if ( current_user_can( 'edit_posts' ) ) {
 				return '<div class="seatlayer-notice">'
-					. esc_html__( 'SeatLayer: no event selected for this chart.', 'seatlayer' )
+					. esc_html__( 'SeatLayer: no event selected for this chart.', 'seatlayer-seating-charts' )
 					. '</div>';
 			}
 			return '';

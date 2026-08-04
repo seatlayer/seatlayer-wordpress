@@ -120,8 +120,8 @@ class SeatLayer_Settings {
 	 */
 	public static function add_menu(): void {
 		add_options_page(
-			__( 'SeatLayer', 'seatlayer' ),
-			__( 'SeatLayer', 'seatlayer' ),
+			__( 'SeatLayer', 'seatlayer-seating-charts' ),
+			__( 'SeatLayer', 'seatlayer-seating-charts' ),
 			'manage_options',
 			'seatlayer',
 			array( __CLASS__, 'render_page' )
@@ -196,7 +196,7 @@ class SeatLayer_Settings {
 			add_settings_error(
 				self::OPTION_KEY,
 				'seatlayer_bad_key',
-				__( 'That does not look like a SeatLayer secret key. It starts with sk_live_ or sk_test_. Your previous key was kept.', 'seatlayer' ),
+				__( 'That does not look like a SeatLayer secret key. It starts with sk_live_ or sk_test_. Your previous key was kept.', 'seatlayer-seating-charts' ),
 				'error'
 			);
 			return self::secret_key();
@@ -248,13 +248,13 @@ class SeatLayer_Settings {
 		$has_key = '' !== self::secret_key();
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'SeatLayer', 'seatlayer' ); ?></h1>
+			<h1><?php esc_html_e( 'SeatLayer', 'seatlayer-seating-charts' ); ?></h1>
 
 			<p style="max-width:60em;">
 				<?php
 				esc_html_e(
 					'Add a seating chart to any page with the SeatLayer block or the [seatlayer_chart] shortcode. Buyers pick seats on your site and pay through your own Stripe or Razorpay account — connect that in your SeatLayer dashboard under Payments.',
-					'seatlayer'
+					'seatlayer-seating-charts'
 				);
 				?>
 			</p>
@@ -267,7 +267,7 @@ class SeatLayer_Settings {
 				<table class="form-table" role="presentation">
 					<tr>
 						<th scope="row">
-							<label for="seatlayer_secret_key"><?php esc_html_e( 'Secret key', 'seatlayer' ); ?></label>
+							<label for="seatlayer_secret_key"><?php esc_html_e( 'Secret key', 'seatlayer-seating-charts' ); ?></label>
 						</th>
 						<td>
 							<input
@@ -277,21 +277,21 @@ class SeatLayer_Settings {
 								value=""
 								class="regular-text"
 								autocomplete="off"
-								placeholder="<?php echo $has_key ? esc_attr__( 'Saved — leave blank to keep', 'seatlayer' ) : esc_attr( 'sk_live_…' ); ?>"
+								placeholder="<?php echo $has_key ? esc_attr__( 'Saved — leave blank to keep', 'seatlayer-seating-charts' ) : esc_attr( 'sk_live_…' ); ?>"
 							/>
 							<p class="description" style="max-width:44em;">
 								<?php
 								esc_html_e(
 									'Optional. Used only to list your events in the editor so you can pick one from a dropdown instead of pasting an event key. The buyer chart works without it.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 								<br />
-								<strong><?php esc_html_e( 'Note:', 'seatlayer' ); ?></strong>
+								<strong><?php esc_html_e( 'Note:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
 									'This key is stored in your WordPress database and can create and modify events. Anyone with database or administrator access can read it. If that is not acceptable, leave it blank and enter event keys by hand.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
@@ -299,7 +299,7 @@ class SeatLayer_Settings {
 								<p>
 									<label>
 										<input type="checkbox" name="<?php echo esc_attr( self::OPTION_KEY ); ?>" value="__remove__" />
-										<?php esc_html_e( 'Remove the saved key', 'seatlayer' ); ?>
+										<?php esc_html_e( 'Remove the saved key', 'seatlayer-seating-charts' ); ?>
 									</label>
 								</p>
 							<?php endif; ?>
@@ -307,7 +307,7 @@ class SeatLayer_Settings {
 					</tr>
 
 					<tr>
-						<th scope="row"><?php esc_html_e( 'Checkout', 'seatlayer' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Checkout', 'seatlayer-seating-charts' ); ?></th>
 						<td>
 							<label>
 								<input
@@ -316,33 +316,33 @@ class SeatLayer_Settings {
 									value="1"
 									<?php checked( self::hosted_checkout() ); ?>
 								/>
-								<?php esc_html_e( 'Let buyers pay without leaving this site', 'seatlayer' ); ?>
+								<?php esc_html_e( 'Let buyers pay without leaving this site', 'seatlayer-seating-charts' ); ?>
 							</label>
 							<p class="description" style="max-width:44em;">
 								<?php
 								esc_html_e(
 									'Off by default. Buyers are sent to SeatLayer to pay, then return with their tickets. Turn this on and the payment step appears on this page instead.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
 
 							<p class="description" style="max-width:44em;">
-								<strong><?php esc_html_e( 'Requires:', 'seatlayer' ); ?></strong>
+								<strong><?php esc_html_e( 'Requires:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
 									'in-page checkout enabled on your SeatLayer account. It is granted per account — ask SeatLayer if you are not sure. Without it this setting quietly does nothing and buyers take the normal redirect, so switching it on early breaks nothing.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
 
 							<p class="description" style="max-width:44em;">
-								<strong><?php esc_html_e( 'What this changes, honestly:', 'seatlayer' ); ?></strong>
+								<strong><?php esc_html_e( 'What this changes, honestly:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
 									'Razorpay collects payment entirely on this page. Stripe cards still open Stripe\'s own page and return the buyer to SeatLayer afterwards rather than here — that last hop is not something this plugin can fix yet. Either way the seats are sold and the tickets are emailed.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
@@ -351,7 +351,7 @@ class SeatLayer_Settings {
 								<?php
 								esc_html_e(
 									'Worth doing now: add this site to your SeatLayer account\'s embed domains, exactly as shown. It is what will let Stripe buyers come back here once that last hop is supported, and it is harmless before then.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 								<br />
@@ -360,7 +360,7 @@ class SeatLayer_Settings {
 								<?php
 								esc_html_e(
 									'Copy the whole line. The match is exact — no wildcards, and http and https count as different entries.',
-									'seatlayer'
+									'seatlayer-seating-charts'
 								);
 								?>
 							</p>
@@ -369,7 +369,7 @@ class SeatLayer_Settings {
 
 					<tr>
 						<th scope="row">
-							<label for="seatlayer_api_base"><?php esc_html_e( 'API URL', 'seatlayer' ); ?></label>
+							<label for="seatlayer_api_base"><?php esc_html_e( 'API URL', 'seatlayer-seating-charts' ); ?></label>
 						</th>
 						<td>
 							<input
@@ -380,14 +380,14 @@ class SeatLayer_Settings {
 								class="regular-text code"
 							/>
 							<p class="description">
-								<?php esc_html_e( 'Leave as-is unless SeatLayer told you otherwise.', 'seatlayer' ); ?>
+								<?php esc_html_e( 'Leave as-is unless SeatLayer told you otherwise.', 'seatlayer-seating-charts' ); ?>
 							</p>
 						</td>
 					</tr>
 
 					<tr>
 						<th scope="row">
-							<label for="seatlayer_app_base"><?php esc_html_e( 'Checkout URL', 'seatlayer' ); ?></label>
+							<label for="seatlayer_app_base"><?php esc_html_e( 'Checkout URL', 'seatlayer-seating-charts' ); ?></label>
 						</th>
 						<td>
 							<input
@@ -398,7 +398,7 @@ class SeatLayer_Settings {
 								class="regular-text code"
 							/>
 							<p class="description">
-								<?php esc_html_e( 'Where buyers are sent to pay. Leave as-is unless SeatLayer told you otherwise.', 'seatlayer' ); ?>
+								<?php esc_html_e( 'Where buyers are sent to pay. Leave as-is unless SeatLayer told you otherwise.', 'seatlayer-seating-charts' ); ?>
 							</p>
 						</td>
 					</tr>
@@ -407,13 +407,13 @@ class SeatLayer_Settings {
 				<?php submit_button(); ?>
 			</form>
 
-			<h2><?php esc_html_e( 'Shortcode', 'seatlayer' ); ?></h2>
+			<h2><?php esc_html_e( 'Shortcode', 'seatlayer-seating-charts' ); ?></h2>
 			<p><code>[seatlayer_chart event="your-event-key"]</code></p>
 			<p class="description" style="max-width:60em;">
 				<?php
 				esc_html_e(
 					'Optional attributes: height (default 640), max_selection (default 10), locale, currency. Example: [seatlayer_chart event="summer-fest" height="720" max_selection="4"]',
-					'seatlayer'
+					'seatlayer-seating-charts'
 				);
 				?>
 			</p>

@@ -56,7 +56,7 @@
 						setValue( {
 							loading: false,
 							events: [],
-							error: ( res && res.error ) || __( 'Could not list your events.', 'seatlayer' ),
+							error: ( res && res.error ) || __( 'Could not list your events.', 'seatlayer-seating-charts' ),
 						} );
 					}
 				} )
@@ -67,7 +67,7 @@
 					setValue( {
 						loading: false,
 						events: [],
-						error: __( 'Could not reach WordPress to list your events.', 'seatlayer' ),
+						error: __( 'Could not reach WordPress to list your events.', 'seatlayer-seating-charts' ),
 					} );
 				} );
 			return function () {
@@ -85,7 +85,7 @@
 			var blockProps = useBlockProps();
 			var events = useEvents();
 
-			var options = [ { label: __( '— Select an event —', 'seatlayer' ), value: '' } ];
+			var options = [ { label: __( '— Select an event —', 'seatlayer-seating-charts' ), value: '' } ];
 			for ( var i = 0; i < events.events.length; i++ ) {
 				var item = events.events[ i ];
 				options.push( {
@@ -114,11 +114,11 @@
 				{},
 				el(
 					PanelBody,
-					{ title: __( 'Event', 'seatlayer' ), initialOpen: true },
+					{ title: __( 'Event', 'seatlayer-seating-charts' ), initialOpen: true },
 					events.loading
 						? el( Spinner )
 						: el( SelectControl, {
-							label: __( 'Event', 'seatlayer' ),
+							label: __( 'Event', 'seatlayer-seating-charts' ),
 							value: attributes.event,
 							options: options,
 							onChange: function ( value ) {
@@ -133,10 +133,10 @@
 						)
 						: null,
 					el( TextControl, {
-						label: __( 'Event key', 'seatlayer' ),
+						label: __( 'Event key', 'seatlayer-seating-charts' ),
 						help: __(
 							'Paste a key directly if it is not in the list above.',
-							'seatlayer'
+							'seatlayer-seating-charts'
 						),
 						value: attributes.event,
 						onChange: function ( value ) {
@@ -146,9 +146,9 @@
 				),
 				el(
 					PanelBody,
-					{ title: __( 'Display', 'seatlayer' ), initialOpen: false },
+					{ title: __( 'Display', 'seatlayer-seating-charts' ), initialOpen: false },
 					el( RangeControl, {
-						label: __( 'Height (px)', 'seatlayer' ),
+						label: __( 'Height (px)', 'seatlayer-seating-charts' ),
 						value: attributes.height,
 						min: 320,
 						max: 2000,
@@ -158,7 +158,7 @@
 						},
 					} ),
 					el( RangeControl, {
-						label: __( 'Maximum seats per buyer', 'seatlayer' ),
+						label: __( 'Maximum seats per buyer', 'seatlayer-seating-charts' ),
 						value: attributes.maxSelection,
 						min: 1,
 						max: 50,
@@ -167,18 +167,18 @@
 						},
 					} ),
 					el( TextControl, {
-						label: __( 'Locale', 'seatlayer' ),
-						help: __( 'Optional, e.g. en, es, de, fr.', 'seatlayer' ),
+						label: __( 'Locale', 'seatlayer-seating-charts' ),
+						help: __( 'Optional, e.g. en, es, de, fr.', 'seatlayer-seating-charts' ),
 						value: attributes.locale,
 						onChange: function ( value ) {
 							setAttributes( { locale: value.trim() } );
 						},
 					} ),
 					el( TextControl, {
-						label: __( 'Currency', 'seatlayer' ),
+						label: __( 'Currency', 'seatlayer-seating-charts' ),
 						help: __(
 							'Optional ISO code, e.g. USD. Defaults to the event currency.',
-							'seatlayer'
+							'seatlayer-seating-charts'
 						),
 						value: attributes.currency,
 						onChange: function ( value ) {
@@ -194,12 +194,12 @@
 					Placeholder,
 					{
 						icon: 'tickets-alt',
-						label: __( 'SeatLayer seating chart', 'seatlayer' ),
+						label: __( 'SeatLayer seating chart', 'seatlayer-seating-charts' ),
 						instructions: events.error
 							? events.error
 							: __(
 								'Choose which event to show. Visitors will pick seats here and pay through your own payment account.',
-								'seatlayer'
+								'seatlayer-seating-charts'
 							),
 					},
 					events.loading
@@ -217,16 +217,16 @@
 					Placeholder,
 					{
 						icon: 'tickets-alt',
-						label: __( 'SeatLayer seating chart', 'seatlayer' ),
+						label: __( 'SeatLayer seating chart', 'seatlayer-seating-charts' ),
 						instructions: __(
 							'The live chart appears when you view or preview the page. It is not rendered in the editor so that opening a page for editing cannot hold real seats.',
-							'seatlayer'
+							'seatlayer-seating-charts'
 						),
 					},
 					el(
 						'p',
 						{ style: { margin: 0 } },
-						el( 'strong', {}, __( 'Event: ', 'seatlayer' ) ),
+						el( 'strong', {}, __( 'Event: ', 'seatlayer-seating-charts' ) ),
 						el( 'code', {}, attributes.event )
 					),
 					el(
@@ -237,7 +237,7 @@
 								setAttributes( { event: '' } );
 							},
 						},
-						__( 'Choose a different event', 'seatlayer' )
+						__( 'Choose a different event', 'seatlayer-seating-charts' )
 					)
 				);
 			}

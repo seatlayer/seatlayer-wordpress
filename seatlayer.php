@@ -10,7 +10,7 @@
  * Author URI:        https://seatlayer.io
  * License:           MIT
  * License URI:       https://opensource.org/licenses/MIT
- * Text Domain:       seatlayer
+ * Text Domain:       seatlayer-seating-charts
  * Domain Path:       /languages
  *
  * @package SeatLayer
@@ -80,6 +80,6 @@ add_action( 'plugins_loaded', 'seatlayer_bootstrap' );
  * Load translations. Kept separate from bootstrap because it must run on `init`.
  */
 function seatlayer_load_textdomain(): void {
-	load_plugin_textdomain( 'seatlayer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'seatlayer-seating-charts', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action( 'init', 'seatlayer_load_textdomain' );

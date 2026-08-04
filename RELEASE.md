@@ -8,47 +8,86 @@ run — this file is the recipe, not a log.
 
 ## Part 0 — decide these BEFORE you submit anything
 
-Four decisions. The first is effectively permanent once wp.org has it, so it is
-the one to get right; the rest are cheap now and awkward later.
+Three decisions, all cheap now and awkward later. (The slug/text-domain question
+that used to head this list is **settled and applied** — see 0.0 for what was
+decided and how to reverse it.)
 
-### 0.1 The slug, and the text domain that must match it — DECIDE THIS FIRST
+### 0.0 The slug and text domain — SETTLED, no action needed
 
 wordpress.org derives the plugin slug from the **Plugin Name** header, and the
 slug it assigns is permanent. The text domain has to equal that slug or the
-language packs built on translate.wordpress.org never load.
+language packs built on translate.wordpress.org never load, and Plugin Check
+reports the mismatch as an error.
 
-Today those disagree:
+These used to disagree. They now agree:
 
 | | value |
 |---|---|
-| Plugin Name | `SeatLayer Seating Charts` → likely slug `seatlayer-seating-charts` |
-| Text Domain | `seatlayer` |
+| Plugin Name | `SeatLayer Seating Charts` |
+| Expected wp.org slug | `seatlayer-seating-charts` |
+| Text Domain | `seatlayer-seating-charts` |
 
-Pick one and apply it before submitting. Plugin Check reports this as an error,
-so it will be caught either way — better here than three weeks into a queue.
+The **name** was kept and the **domain** was lengthened to match it, rather than
+the other way round: the name is already public-facing in `readme.txt` and on
+seatlayer.io, and a text domain is invisible to everyone except the translation
+tooling. Churning the branding to save nine characters in a URL is the wrong
+trade.
 
-**Option A — shorten the name, keep the short domain.** Best if `seatlayer` is
-available as a slug (check https://wordpress.org/plugins/seatlayer/ returns 404).
+So: **do nothing here.** Use `seatlayer-seating-charts` as the slug everywhere
+below — it is already the `--prefix` in Part 3.1 and the SVN path in Part 3.3.
+
+<details>
+<summary><strong>Only if you would rather have the short slug <code>seatlayer</code></strong> — the full reversal</summary>
+
+Worth doing only if `seatlayer` is actually available (check that
+https://wordpress.org/plugins/seatlayer/ returns 404) and only **before** the
+first submission — after wp.org assigns a slug it is permanent.
+
+This renames the plugin so the name-derived slug becomes `seatlayer`, and puts
+the text domain back to `seatlayer`.
 
 ```sh
 cd /Users/paiteq/projects/seatlayer-sdks/wordpress
+
+# 1. The public name, in both places it appears.
 sed -i '' 's/^ \* Plugin Name:       SeatLayer Seating Charts$/ * Plugin Name:       SeatLayer/' seatlayer.php
 sed -i '' 's/^=== SeatLayer Seating Charts ===$/=== SeatLayer ===/' readme.txt
+
+# 2. The text domain: 62 call sites + the header.
+grep -rl "'seatlayer-seating-charts'" seatlayer.php includes assets/js \
+  | xargs sed -i '' "s/'seatlayer-seating-charts'/'seatlayer'/g"
+sed -i '' 's/^ \* Text Domain:       seatlayer-seating-charts$/ * Text Domain:       seatlayer/' seatlayer.php
+
+# 3. The slug in this file's own commands (Parts 1.2, 3.1, 3.3).
+sed -i '' 's/seatlayer-seating-charts/seatlayer/g' RELEASE.md
 ```
 
-**Option B — keep the descriptive name, lengthen the domain.** Safer, uglier,
-and touches every file.
+Then verify — expect **62** hits, and confirm the two non-gettext domain
+registrations came along:
 
 ```sh
-cd /Users/paiteq/projects/seatlayer-sdks/wordpress
-grep -rl "'seatlayer'" seatlayer.php includes assets/js \
-  | xargs sed -i '' "s/'seatlayer'/'seatlayer-seating-charts'/g"
-sed -i '' 's/^ \* Text Domain:       seatlayer$/ * Text Domain:       seatlayer-seating-charts/' seatlayer.php
-# then re-check by hand: wp_set_script_translations() and load_plugin_textdomain()
-grep -rn "seatlayer-seating-charts" seatlayer.php includes assets/js | head -40
+grep -rc "'seatlayer'" seatlayer.php includes assets/js
+grep -n "load_plugin_textdomain" seatlayer.php
+grep -n "wp_set_script_translations" includes/class-seatlayer-block.php
 ```
 
-Whichever you choose, re-lint afterwards (Part 1.1).
+**One thing the blanket `sed` in step 2 is safe about, and you must keep safe if
+you hand-edit instead:** `includes/class-seatlayer-settings.php` line ~126 holds
+a bare `'seatlayer'` that is **not** a text domain — it is the `add_options_page()`
+**menu slug**, which is what puts the settings screen at
+`options-general.php?page=seatlayer`. Changing it would move the settings page
+and break any bookmark or documentation link to it. The step-2 command only
+matches `'seatlayer-seating-charts'`, so it cannot touch that line; a reversed
+search-and-replace (`'seatlayer'` → something else) would.
+
+```sh
+# The menu slug must still read 'seatlayer' after any of this.
+sed -n '122,128p' includes/class-seatlayer-settings.php
+```
+
+Re-lint afterwards (Part 1.1), then re-run Plugin Check (1.2).
+
+</details>
 
 ### 0.2 `Contributors: seatlayer` must be a real wordpress.org account
 
@@ -101,9 +140,21 @@ if you do not have one to hand, `wp-env` gives you a throwaway in one command.
 cd /Users/paiteq/projects/seatlayer-sdks/wordpress
 npx @wordpress/env start
 npx @wordpress/env run cli wp plugin install plugin-check --activate
-npx @wordpress/env run cli wp plugin check seatlayer
+
+# wp-env mounts the plugin under THIS REPOSITORY'S DIRECTORY NAME (`wordpress`),
+# not under the wp.org slug — so confirm what to call it before checking it.
+npx @wordpress/env run cli wp plugin list
+npx @wordpress/env run cli wp plugin check wordpress
+
 npx @wordpress/env stop
 ```
+
+Plugin Check's "plugin slug does not match text domain" test reads the *folder*
+name, so under wp-env it will flag `wordpress` vs `seatlayer-seating-charts`.
+That is an artefact of the mount, not a real defect. To see the result the
+reviewers will see, check the built zip instead — unzip it into the wp-env
+plugins directory under the real slug, or simply confirm by hand that
+`Text Domain:` equals the `--prefix` used in Part 3.1.
 
 Fix every **ERROR**. Read every **WARNING** and either fix it or be able to say
 why not — the one already knowingly left is the CDN script's missing version,
@@ -156,7 +207,7 @@ git push origin v0.2.0
 Then, optionally, a GitHub release with the zip attached (built in Part 3.1):
 
 ```sh
-gh release create v0.2.0 seatlayer-0.2.0.zip \
+gh release create v0.2.0 seatlayer-seating-charts-0.2.0.zip \
   --title "0.2.0" \
   --notes "See readme.txt changelog."
 ```
@@ -171,15 +222,18 @@ gh release create v0.2.0 seatlayer-0.2.0.zip \
 produces exactly the tagged commit minus those — no manual deleting, and no risk
 of shipping something that was not reviewed.
 
-**The `--prefix` is the folder name users end up with, so it must be the slug you
-settled in 0.1.** Replace `seatlayer/` below if you chose Option B.
+**The `--prefix` is the folder name users end up with, so it must be the slug —
+and it must equal the `Text Domain:` header.** Both are `seatlayer-seating-charts`
+(0.0); if you took the reversal in 0.0, both become `seatlayer`.
 
 ```sh
 cd /Users/paiteq/projects/seatlayer-sdks/wordpress
-git archive --format=zip --prefix=seatlayer/ -o seatlayer-0.2.0.zip v0.2.0
+git archive --format=zip \
+  --prefix=seatlayer-seating-charts/ \
+  -o seatlayer-seating-charts-0.2.0.zip v0.2.0
 
 # Check what is in it before uploading anything.
-unzip -l seatlayer-0.2.0.zip
+unzip -l seatlayer-seating-charts-0.2.0.zip
 ```
 
 Expect: `seatlayer.php`, `uninstall.php`, `readme.txt`, `LICENSE`, `includes/`,
@@ -192,7 +246,7 @@ Manual, and only once:
 
 1. Sign in at https://wordpress.org/plugins/developers/ with the account from 0.2.
 2. Go to https://wordpress.org/plugins/developers/add/ and upload
-   `seatlayer-0.2.0.zip`.
+   `seatlayer-seating-charts-0.2.0.zip`.
 3. Wait. Review is a human reading the source, typically days to a few weeks.
    They will email the account in 0.2 with anything they want changed; reply to
    that thread with a corrected zip rather than resubmitting through the form.
@@ -210,13 +264,13 @@ wp.org gives you an SVN repository, not a Git one. You get the URL by email.
 
 ```sh
 cd ~   # anywhere outside this Git repo
-svn checkout https://plugins.svn.wordpress.org/seatlayer/ seatlayer-svn
+svn checkout https://plugins.svn.wordpress.org/seatlayer-seating-charts/ seatlayer-svn
 cd seatlayer-svn
 
 # Unpack the same zip's contents into trunk.
 rm -rf trunk/*
-unzip -o /Users/paiteq/projects/seatlayer-sdks/wordpress/seatlayer-0.2.0.zip -d /tmp/sl
-cp -R /tmp/sl/seatlayer/. trunk/
+unzip -o /Users/paiteq/projects/seatlayer-sdks/wordpress/seatlayer-seating-charts-0.2.0.zip -d /tmp/sl
+cp -R /tmp/sl/seatlayer-seating-charts/. trunk/
 
 svn add --force trunk
 svn status                       # read this before committing

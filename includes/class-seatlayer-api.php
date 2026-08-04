@@ -42,7 +42,7 @@ class SeatLayer_API {
 		if ( '' === $key ) {
 			return array(
 				'ok'    => false,
-				'error' => __( 'No secret key saved. Add one in Settings → SeatLayer, or enter the event key by hand.', 'seatlayer' ),
+				'error' => __( 'No secret key saved. Add one in Settings → SeatLayer, or enter the event key by hand.', 'seatlayer-seating-charts' ),
 			);
 		}
 
@@ -74,7 +74,7 @@ class SeatLayer_API {
 				// TLS), which is what an administrator needs to act on.
 				'error' => sprintf(
 					/* translators: %s: transport error message. */
-					__( 'Could not reach SeatLayer: %s', 'seatlayer' ),
+					__( 'Could not reach SeatLayer: %s', 'seatlayer-seating-charts' ),
 					$response->get_error_message()
 				),
 			);
@@ -86,7 +86,7 @@ class SeatLayer_API {
 		if ( 401 === $status || 403 === $status ) {
 			return array(
 				'ok'    => false,
-				'error' => __( 'SeatLayer rejected the secret key. Check it in Settings → SeatLayer.', 'seatlayer' ),
+				'error' => __( 'SeatLayer rejected the secret key. Check it in Settings → SeatLayer.', 'seatlayer-seating-charts' ),
 			);
 		}
 
@@ -95,7 +95,7 @@ class SeatLayer_API {
 				'ok'    => false,
 				'error' => sprintf(
 					/* translators: %d: HTTP status code. */
-					__( 'SeatLayer returned an unexpected response (HTTP %d).', 'seatlayer' ),
+					__( 'SeatLayer returned an unexpected response (HTTP %d).', 'seatlayer-seating-charts' ),
 					$status
 				),
 			);
