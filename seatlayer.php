@@ -11,7 +11,6 @@
  * License:           MIT
  * License URI:       https://opensource.org/licenses/MIT
  * Text Domain:       seatlayer-seating-charts
- * Domain Path:       /languages
  *
  * @package SeatLayer
  */
@@ -76,10 +75,16 @@ function seatlayer_bootstrap(): void {
 }
 add_action( 'plugins_loaded', 'seatlayer_bootstrap' );
 
-/**
- * Load translations. Kept separate from bootstrap because it must run on `init`.
+/*
+ * No `load_plugin_textdomain()` call and no `Domain Path` header, deliberately.
+ *
+ * WordPress has loaded translations for wordpress.org-hosted plugins automatically
+ * since 4.6, keyed on the plugin slug — calling it by hand is redundant, and Plugin
+ * Check flags it. The `Domain Path: /languages` header was worse than redundant: it
+ * pointed at a directory that has never existed in this repository, which Plugin
+ * Check reports as a broken header.
+ *
+ * If this plugin ever ships translations OUTSIDE wordpress.org, both come back
+ * together — the header, the directory, and the loader call. One without the others
+ * is the state we just removed.
  */
-function seatlayer_load_textdomain(): void {
-	load_plugin_textdomain( 'seatlayer-seating-charts', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
-add_action( 'init', 'seatlayer_load_textdomain' );

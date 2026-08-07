@@ -1,8 +1,8 @@
 === SeatLayer Seating Charts ===
-Contributors: seatlayer
+Contributors: navincse
 Tags: seating chart, reserved seating, event tickets, ticketing, seat selection
 Requires at least: 6.3
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 0.2.0
 License: MIT
