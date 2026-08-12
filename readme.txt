@@ -12,40 +12,76 @@ Interactive reserved-seating charts on WordPress. Visitors pick their seats and 
 
 == Description ==
 
-Add a real seating chart to any page or post. Visitors see live availability, pick
-the seats they want, and pay — with the money going straight into your own payment
-account.
+Turn a WordPress page into a complete reserved-seating experience. Buyers can
+explore the venue, see live availability and prices, choose exact seats, and
+continue to checkout without calling, emailing, or guessing where they will sit.
 
-**How it works**
+= A better seating experience for buyers =
 
-1. Design your venue and create an event in your SeatLayer dashboard.
-2. Connect your Stripe or Razorpay account there, under Payments.
-3. Drop the SeatLayer block on a page, or use `[seatlayer_chart event="your-event"]`.
+* **Interactive venue maps** for rows, tables, booths, general-admission areas,
+  accessible seating, and multiple floors.
+* **Live availability** that updates while buyers are viewing the event.
+* **Clear seat details and prices** before a buyer makes a selection.
+* **Ticket tiers and active event offers** shown through the SeatLayer buyer
+  experience when configured for the event.
+* **Temporary seat holds** during checkout, with automatic release when a buyer
+  does not finish.
+* **Mobile-ready controls** with touch selection, pinch-to-zoom, responsive
+  summaries, and a layout designed for smaller screens.
+* **Best-available assistance** when buyers want SeatLayer to find seats
+  together.
+* **Email confirmation** with the seats purchased after successful payment.
 
-**What you get**
+= Built for WordPress organizers =
 
-* Live availability — seats update as other people buy, without a page refresh.
-* Real venue layouts: rows, tables, booths, general-admission areas, multiple floors.
-* Works on phones. Pinch to zoom, tap to select.
-* Seats are held while a buyer checks out, then released automatically if they
-  don't finish — so two people cannot buy the same seat.
-* Buyers get an emailed confirmation listing their seats.
+* Add the **SeatLayer seating chart** block in the Gutenberg editor.
+* Use `[seatlayer_chart event="your-event"]` in classic content, builders, or
+  shortcode-compatible areas.
+* Choose an event from the editor when an optional SeatLayer secret key is
+  configured, or paste an event key without storing a secret.
+* Load the SeatLayer buyer SDK only on pages that contain a chart.
+* Keep payments in the organizer's connected Stripe or Razorpay account.
+* Manage venue design, event pricing, offers, orders, and ticket delivery from
+  the [SeatLayer dashboard](https://app.seatlayer.io/).
 
-**About payments**
+= Choose the checkout experience =
 
-SeatLayer is not a payment processor and never holds your money. You connect your
-own Stripe or Razorpay account, and buyers pay you directly. Refunds happen in your
-own payment dashboard; SeatLayer notices them and puts the seats back on sale.
+**Hosted checkout — the safe default**
 
-**Requirements**
+After choosing seats, the buyer continues to the SeatLayer-hosted event page to
+pay. SeatLayer completes the Order and ticket-delivery flow through the payment
+account connected by the organizer.
 
-A SeatLayer account. The plugin embeds charts from an existing account — it is not
-a standalone seating designer.
+**Checkout from your WordPress page — optional**
+
+Enable **Let buyers pay without leaving this site** under **Settings →
+SeatLayer**. Razorpay opens on the page. Stripe opens its secure checkout and
+returns the buyer to the WordPress page afterward. This option requires in-page
+checkout access and the exact WordPress origin to be registered as a SeatLayer
+embed domain; otherwise the plugin safely keeps the hosted-checkout flow.
+
+= How it works =
+
+1. [Create a SeatLayer account](https://app.seatlayer.io/) and design or select
+   your venue.
+2. Create an event, set prices and offers, and connect Stripe or Razorpay.
+3. Add the SeatLayer block to a WordPress page and choose the event.
+4. Publish the page. Buyers can select seats and purchase through the configured
+   SeatLayer checkout.
+
+= Requirements =
+
+This plugin connects WordPress to an existing SeatLayer account. Venue design,
+events, pricing, offers, and managed checkout are configured in SeatLayer; the
+plugin is not a standalone seating designer or a WooCommerce checkout extension.
+
+[Learn about the WordPress integration](https://seatlayer.io/integrations/wordpress) ·
+[Choose the right SeatLayer integration](https://docs.seatlayer.io/start/choose-an-integration/)
 
 == Installation ==
 
 1. Install and activate the plugin.
-2. Create your venue, chart, and event at https://app.seatlayer.io.
+2. Create your venue, chart, and event in the [SeatLayer dashboard](https://app.seatlayer.io/).
 3. Connect Stripe or Razorpay in the SeatLayer dashboard under Payments.
 4. Add the **SeatLayer seating chart** block to a page and choose your event.
 
@@ -91,41 +127,28 @@ The chart's code only loads on pages that actually contain a chart.
 
 = Can buyers pay without leaving my site? =
 
-Partly, and it is off by default. Under **Settings → SeatLayer** you can switch
-Checkout to "Let buyers pay without leaving this site". Two caveats worth reading
-before you do:
-
-* Your SeatLayer account needs in-page checkout enabled — it is granted per
-  account. Without it the setting quietly does nothing and buyers take the normal
-  redirect, so turning it on early cannot break anything.
-* Razorpay collects payment entirely on your page — the buyer never leaves.
-  Stripe cards still open Stripe's own page, but the buyer then comes back to the
-  page they bought from. Either way the seats are sold and the tickets are
-  emailed.
-
-For that return trip, add your site to your SeatLayer account's embed domains,
-using the exact address the settings screen shows you. SeatLayer only returns
-buyers to addresses you have declared in advance, which is what stops a return
-address from sending a paying customer somewhere you did not sanction.
-
-If you skip it you lose the return trip and nothing else: an undeclared address
-is ignored, not refused. The buyer still pays, the seats are still sold, and the
-tickets are still emailed — they simply finish on SeatLayer's page.
+It is optional and off by default. Enable **Let buyers pay without leaving this
+site** under **Settings → SeatLayer**. Razorpay opens on the page; Stripe opens
+its secure checkout and returns the buyer afterward. Your SeatLayer account must
+have in-page checkout enabled, and the exact WordPress origin must be registered
+as an embed domain. Otherwise buyers safely continue through hosted checkout.
 
 == External services ==
 
 This plugin is a client for SeatLayer, a hosted seating and ticketing service. It
 does not work standalone, and using it means your site and your visitors talk to
-SeatLayer. Exactly what is sent, and when:
+SeatLayer. This section explains each external service, when it is contacted, and
+what data is sent.
 
-**cdn.seatlayer.io** — the seating chart renderer.
+**SeatLayer CDN (`cdn.seatlayer.io`)** — loads the seating-chart renderer.
 
 * When: only on pages that actually contain a chart. The browser loads
   `https://cdn.seatlayer.io/seatlayer-js@0/seatlayer.js`.
 * Sent: nothing the plugin adds. As with any script request, the browser sends
   its own IP address, user agent, and referring page.
 
-**api.seatlayer.io** — seat availability, seat holds, and payment sessions.
+**SeatLayer API (`api.seatlayer.io`)** — provides layouts, live
+availability, seat holds, and payment sessions.
 
 * When (visitor): as soon as a chart renders, to fetch the seating layout and
   live availability; then when a visitor selects seats, to hold them; then, if
@@ -134,40 +157,36 @@ SeatLayer. Exactly what is sent, and when:
   only — the buyer's email address and, if given, their name. A payment is
   started with the hold identifier alone: the plugin never sends an amount, and
   the SeatLayer server recomputes the total from its own records.
-* Also sent, only when Checkout is set to "Let buyers pay without leaving this
-  site": the web address of the page the chart is on, so a buyer returning from
-  Stripe lands back on it. It is the page's own public URL and nothing else — no
-  visitor data. SeatLayer uses it only if it matches an embed domain you declared
-  in advance, and otherwise ignores it.
+* Also sent for optional in-page checkout: the chart page's public URL, used only
+  when it matches a pre-declared embed domain so Stripe can return the buyer.
 * When (administrator): only if you save a secret key, and only inside the block
   editor, to list your events in a dropdown. Your server makes this call, not the
   browser, and the key is never sent to a browser.
 * Sent (administrator): your secret key. No visitor data.
 
-**app.seatlayer.io** — the hosted buyer page, used in the default handoff mode.
+**[SeatLayer hosted buyer page](https://app.seatlayer.io/)** — completes the
+default hosted-checkout journey.
 
 * When: only if a buyer chooses to check out. Their browser is redirected to
   `https://app.seatlayer.io/e/EVENT?hold=HOLD_ID`.
 * Sent: the event key and the hold identifier, in the URL. No amount, and nothing
   about the buyer.
 
-**checkout.stripe.com / checkout.razorpay.com** — the payment step, and only if
-you switch Checkout to "Let buyers pay without leaving this site".
+**Stripe or Razorpay** — processes payment through the organizer's connected
+gateway account.
 
-* When: only after a buyer has selected seats and pressed pay. Razorpay's script
-  is loaded into your page to open its payment window; Stripe redirects the
-  buyer to its own page.
-* Sent: what the gateway needs to charge — the amount and currency, which
-  SeatLayer computed, plus the buyer's email. Your site does not send this; the
-  payment window and the redirect are set up by SeatLayer and your own gateway
-  account.
-* Stripe: https://stripe.com/privacy — Razorpay: https://razorpay.com/privacy
+* When: after a buyer selects seats and presses pay. Razorpay opens its payment
+  window on the page; Stripe redirects to its secure checkout.
+* Sent by SeatLayer to the gateway: the authoritative amount, currency, and
+  buyer email needed to process payment.
+* Privacy: [Stripe Privacy Policy](https://stripe.com/privacy) ·
+  [Razorpay Privacy Policy](https://razorpay.com/privacy)
 
 Card details are handled by Stripe or Razorpay on the account **you** connected.
 They never pass through this plugin, your WordPress site, or your database.
 
-Service terms: https://seatlayer.io/terms
-Privacy policy: https://seatlayer.io/privacy
+[SeatLayer Terms of Service](https://seatlayer.io/terms) ·
+[SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 
 == Changelog ==
 
