@@ -25,7 +25,7 @@ stopping to decide anything.
 |---|---|
 | **0** | Two account facts to confirm, and one optional asset call. Nothing to code. |
 | **1** | Verify locally: syntax → Plugin Check → click through it by hand. |
-| **2** | GitHub: create the repo, push, tag `v0.2.0`. |
+| **2** | GitHub: verify the public repository, push, and tag the release. |
 | **3** | wp.org: build the zip → submit → *(wait for approval)* → SVN trunk + tag → listing assets. |
 
 ## Normal automated release
@@ -297,9 +297,10 @@ same throwaway install:
 
 ## Part 2 — GitHub
 
-The repository has no remote yet. `gh` is currently authenticated as
-`pietechsolution`; make sure that account can create in the `seatlayer` org, or
-change the owner in the first command.
+The public source repository is
+https://github.com/seatlayer/seatlayer-wordpress. `origin` is already configured.
+For recovery releases, confirm the intended commit and push it before creating
+the version tag.
 
 ```sh
 cd /Users/paiteq/projects/seatlayer-sdks/wordpress
@@ -308,25 +309,20 @@ cd /Users/paiteq/projects/seatlayer-sdks/wordpress
 git log --oneline
 git status --short          # expect: clean
 
-# Create the repo and push. --source=. wires up origin for you.
-gh repo create seatlayer/seatlayer-wordpress \
-  --public \
-  --source=. \
-  --remote=origin \
-  --description "SeatLayer for WordPress — interactive reserved-seating charts, with payment through your own Stripe or Razorpay account."
-
 git push -u origin main
 
-# Tag the release.
-git tag -a v0.2.0 -m "0.2.0 — optional in-page checkout, uninstall cleanup, external-services disclosure"
-git push origin v0.2.0
+# Tag the release; replace 0.3.0 with the version being released.
+git tag -a v0.3.0 -m "0.3.0"
+git push origin v0.3.0
 ```
 
-Then, optionally, a GitHub release with the zip attached (built in Part 3.1):
+Publishing the GitHub Release normally starts the automated WordPress.org
+deployment. Do not publish it while following the manual SVN recovery path,
+because that would deploy the same version twice.
 
 ```sh
-gh release create v0.2.0 seatlayer-seating-charts-0.2.0.zip \
-  --title "0.2.0" \
+gh release create v0.3.0 \
+  --title "0.3.0" \
   --notes "See readme.txt changelog."
 ```
 
@@ -429,8 +425,9 @@ listing never renders a caption without its image.
    wrong code: the `Version:` header in `seatlayer.php`, `SEATLAYER_VERSION` in
    the same file, and `Stable tag:` in `readme.txt`.
 3. Add a `== Changelog ==` entry.
-4. Tag, push, `git archive`, then SVN: copy into `trunk`, commit, `svn copy` to
-   `tags/X.Y.Z`, commit.
+4. Push the tag and publish its GitHub Release. The release workflow performs the
+   SVN update and attaches the installable ZIP. Use Part 3 manually only to
+   recover from an automation outage.
 
 `Stable tag` is what actually decides what users download. A tag that does not
 exist in SVN, or a `Stable tag` still pointing at the old version, ships the old

@@ -11,6 +11,7 @@
 /.wordpress-org  export-ignore
 /.wordpress-org/** export-ignore
 /CONTRIBUTING.md export-ignore
+/README.md      export-ignore
 /RELEASE.md      export-ignore
 /tests           export-ignore
 /tests/**        export-ignore
