@@ -4,6 +4,18 @@ Two destinations, in this order: **GitHub** (source of truth, where issues live)
 and **wordpress.org** (where users actually install from). Nothing below has been
 run — this file is the recipe, not a log.
 
+> **Status, 2026-08-12.** `0.2.0` was submitted to wordpress.org on 11 Aug 2026 and
+> came back **pended** on a single finding: `Plugin URI` pointed at
+> `https://seatlayer.io/integrations/wordpress`, which 404'd. That page now exists,
+> so the header is valid unchanged and the reviewed zip is byte-identical.
+>
+> Two questions below are settled and must not be re-opened. **The slug is
+> `seatlayer-seating-charts`** — wp.org assigned it, it is permanent, and the
+> "short slug `seatlayer`" reversal block before 0.1 is dead. **The contributor is
+> `navincse`**, which resolves; `seatlayer` never existed as a wordpress.org
+> account, so 0.1 is history rather than work. Every other URL the plugin declares
+> was re-checked on 2026-08-12 and resolves.
+
 Read Part 0 first; everything after it is meant to be run start to finish without
 stopping to decide anything.
 
