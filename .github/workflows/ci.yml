@@ -1,0 +1,44 @@
+name: Plugin checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "7.4"
+          coverage: none
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check PHP syntax
+        run: |
+          php -l seatlayer.php
+          php -l uninstall.php
+          for file in includes/*.php; do php -l "$file"; done
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check assets/js/frontend.js
+          node --check assets/js/block.js
+
+      - name: Run focused logic checks
+        run: |
+          php tests/settings-logic.php
+          node tests/frontend-options.js

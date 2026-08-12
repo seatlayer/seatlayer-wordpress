@@ -1,13 +1,13 @@
 # Releasing
 
-Two destinations, in this order: **GitHub** (source of truth, where issues live)
-and **wordpress.org** (where users actually install from). Nothing below has been
-run — this file is the recipe, not a log.
+Two destinations: **GitHub** is the source of truth and **wordpress.org** is where
+users install the plugin. The normal release path is automated by
+`.github/workflows/release-wordpress.yml`; the detailed manual steps below are
+the recovery procedure.
 
-> **Status, 2026-08-12.** `0.2.0` was submitted to wordpress.org on 11 Aug 2026 and
-> came back **pended** on a single finding: `Plugin URI` pointed at
-> `https://seatlayer.io/integrations/wordpress`, which 404'd. That page now exists,
-> so the header is valid unchanged and the reviewed zip is byte-identical.
+> **Status, 2026-08-12.** `0.2.0` is published at
+> https://wordpress.org/plugins/seatlayer-seating-charts/. GitHub release
+> automation is configured for subsequent versions.
 >
 > Two questions below are settled and must not be re-opened. **The slug is
 > `seatlayer-seating-charts`** — wp.org assigned it, it is permanent, and the
@@ -28,8 +28,24 @@ stopping to decide anything.
 | **2** | GitHub: create the repo, push, tag `v0.2.0`. |
 | **3** | wp.org: build the zip → submit → *(wait for approval)* → SVN trunk + tag → listing assets. |
 
-The only unbounded wait is plugin review in 3.2. Everything before it is one
-sitting.
+## Normal automated release
+
+1. Update the version in `seatlayer.php`, `SEATLAYER_VERSION`, and the
+   `Stable tag` in `readme.txt` to the same semantic version.
+2. Merge the verified change to `main`.
+3. Create and publish a GitHub Release whose tag is that version, preferably
+   `v0.3.0` style.
+4. GitHub Actions verifies the tag and focused tests, deploys it to the permanent
+   WordPress.org SVN repository, and attaches the installable ZIP to the GitHub
+   Release.
+
+The workflow intentionally rejects prereleases and mismatched versions. It needs
+the repository secrets `SVN_USERNAME` and `SVN_PASSWORD`. WordPress.org still
+uses SVN as its publishing backend; GitHub Actions performs that SVN operation
+for maintainers.
+
+The manual process below remains available if GitHub Actions or WordPress.org is
+unavailable.
 
 ---
 
