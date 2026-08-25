@@ -1,6 +1,6 @@
 === SeatLayer Seating Charts ===
 Contributors: navincse
-Tags: seating chart, reserved seating, event tickets, ticketing, seat selection
+Tags: seating chart, seat selection, event tickets, sell tickets, reserved seating
 Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -8,13 +8,15 @@ Stable tag: 0.2.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Interactive reserved-seating charts on WordPress. Visitors pick their seats and pay through your own Stripe or Razorpay account.
+Sell tickets with seat selection on WordPress. Visitors pick exact seats on an interactive chart and pay through your own Stripe or Razorpay.
 
 == Description ==
 
-Turn a WordPress page into a complete reserved-seating experience. Buyers can
-explore the venue, see live availability and prices, choose exact seats, and
-continue to checkout without calling, emailing, or guessing where they will sit.
+Turn a WordPress page into a complete reserved-seating experience and sell
+tickets with seat selection on your own site. Buyers can explore the venue, see
+live availability and prices, choose exact seats, and continue to checkout
+without calling, emailing, or guessing where they will sit. Payment goes to the
+Stripe or Razorpay account you connect, not to a third-party ticketing site.
 
 = A better seating experience for buyers =
 
@@ -90,6 +92,23 @@ editor can list your events in a dropdown instead of you pasting event keys. The
 chart itself works without a key.
 
 == Frequently Asked Questions ==
+
+= How do I sell tickets with seat selection on WordPress? =
+
+Install this plugin, create your venue, chart, and event in the SeatLayer
+dashboard, connect Stripe or Razorpay under Payments, then add the SeatLayer
+seating chart block to a page and choose the event. Buyers pick exact seats on
+your WordPress page, the selection is held while they check out, and payment
+completes through your own gateway account. No separate ticketing site and no
+manual seat assignment are involved.
+
+= Is this an event ticketing plugin with a seat map? =
+
+It is the seat-map front end for SeatLayer's reserved-seating and ticketing
+platform. WordPress renders the interactive chart, while venue layouts, ticket
+tiers, pricing, offers, live availability, orders, and ticket delivery are
+managed in SeatLayer. Ticketing state is never duplicated in your WordPress
+database, which is what keeps two buyers from being sold the same seat.
 
 = Do I need a secret key? =
 
