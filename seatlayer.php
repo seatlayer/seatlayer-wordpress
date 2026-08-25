@@ -3,7 +3,7 @@
  * Plugin Name:       SeatLayer Seating Charts
  * Plugin URI:        https://seatlayer.io/integrations/wordpress
  * Description:       Embed interactive reserved-seating charts and sell tickets from WordPress. Buyers pick seats on your page and pay through your own Stripe or Razorpay account.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            SeatLayer
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SEATLAYER_VERSION', '0.2.0' );
+define( 'SEATLAYER_VERSION', '0.2.1' );
 define( 'SEATLAYER_PLUGIN_FILE', __FILE__ );
 define( 'SEATLAYER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEATLAYER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

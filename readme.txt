@@ -4,7 +4,7 @@ Tags: seating chart, seat selection, event tickets, sell tickets, reserved seati
 Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -208,6 +208,10 @@ They never pass through this plugin, your WordPress site, or your database.
 [SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 
 == Changelog ==
+
+= 0.2.1 =
+* Documentation only. Refreshes the plugin listing text and the project
+  README. No plugin behaviour changes.
 
 = 0.2.0 =
 * New: an optional Checkout setting that lets buyers pay on your page instead of
