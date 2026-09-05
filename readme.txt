@@ -1,19 +1,19 @@
 === SeatLayer Seating Charts ===
 Contributors: navincse
-Tags: seating chart, seat selection, event tickets, sell tickets, reserved seating
+Tags: seating chart, seat map, seat selection, event tickets, reserved seating
 Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.2.1
+Stable tag: 0.2.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Sell tickets with seat selection on WordPress. Visitors pick exact seats on an interactive chart and pay through your own Stripe or Razorpay.
+Interactive seating charts and seat maps for WordPress. Buyers choose seats and buy event tickets through your Stripe or Razorpay account.
 
 == Description ==
 
-Turn a WordPress page into a complete reserved-seating experience and sell
-tickets with seat selection on your own site. Buyers can explore the venue, see
+Add an interactive seating chart and seat map to WordPress, then sell tickets
+with seat selection on your own site. Buyers can explore the venue, see
 live availability and prices, choose exact seats, and continue to checkout
 without calling, emailing, or guessing where they will sit. Payment goes to the
 Stripe or Razorpay account you connect, not to a third-party ticketing site.
@@ -65,7 +65,7 @@ embed domain; otherwise the plugin safely keeps the hosted-checkout flow.
 = How it works =
 
 1. [Create a SeatLayer account](https://app.seatlayer.io/) and design or select
-   your venue.
+   your venue. Request Managed Ticketing access before opening sales.
 2. Create an event, set prices and offers, and connect Stripe or Razorpay.
 3. Add the SeatLayer block to a WordPress page and choose the event.
 4. Publish the page. Buyers can select seats and purchase through the configured
@@ -73,17 +73,21 @@ embed domain; otherwise the plugin safely keeps the hosted-checkout flow.
 
 = Requirements =
 
-This plugin connects WordPress to an existing SeatLayer account. Venue design,
-events, pricing, offers, and managed checkout are configured in SeatLayer; the
-plugin is not a standalone seating designer or a WooCommerce checkout extension.
+This plugin connects WordPress to an approved SeatLayer Managed Ticketing
+account. SeatLayer staff must enable Hosted Checkout for your organization
+before you can create a Managed event. Venue design, events, pricing, offers,
+and checkout are configured in SeatLayer. See
+[Managed Ticketing pricing](https://seatlayer.io/pricing/) for service charges.
 
-[Learn about the WordPress integration](https://seatlayer.io/integrations/wordpress) ·
+[WordPress seating chart setup guide](https://docs.seatlayer.io/integrations/wordpress/) ·
+[WordPress reserved-seating features](https://seatlayer.io/integrations/wordpress/) ·
 [Choose the right SeatLayer integration](https://docs.seatlayer.io/start/choose-an-integration/)
 
 == Installation ==
 
 1. Install and activate the plugin.
-2. Create your venue, chart, and event in the [SeatLayer dashboard](https://app.seatlayer.io/).
+2. With Managed Ticketing access approved, create your venue, chart, and event
+   in the [SeatLayer dashboard](https://app.seatlayer.io/).
 3. Connect Stripe or Razorpay in the SeatLayer dashboard under Payments.
 4. Add the **SeatLayer seating chart** block to a page and choose your event.
 
@@ -95,7 +99,8 @@ chart itself works without a key.
 
 = How do I sell tickets with seat selection on WordPress? =
 
-Install this plugin, create your venue, chart, and event in the SeatLayer
+With Managed Ticketing access approved, install this plugin and create your
+venue, chart, and event in the SeatLayer
 dashboard, connect Stripe or Razorpay under Payments, then add the SeatLayer
 seating chart block to a page and choose the event. Buyers pick exact seats on
 your WordPress page, the selection is held while they check out, and payment
@@ -124,15 +129,15 @@ keys by hand — nothing else needs it.
 
 = Does this work with WooCommerce? =
 
-Not yet. Today buyers pay through SeatLayer's checkout using your own Stripe or
-Razorpay account. A WooCommerce integration — seats as cart line items, paid
-through your existing Woo gateway — is planned separately.
+The plugin can run on a site that also uses WooCommerce. SeatLayer ticket
+purchases use your connected Stripe or Razorpay account and do not create
+WooCommerce cart line items or orders.
 
 = Can two people buy the same seat? =
 
-No. A seat is held on SeatLayer's servers the moment a buyer selects it, and only
-one hold can exist per seat. If they don't pay in time, the hold expires and the
-seat returns to sale.
+No. A temporary hold reserves the buyer's selected inventory on SeatLayer's
+servers during checkout. Only one hold can exist per seat. If they don't pay
+in time, the hold expires and the seat returns to sale.
 
 = What happens if a payment succeeds but the seat is taken? =
 
@@ -208,6 +213,12 @@ They never pass through this plugin, your WordPress site, or your database.
 [SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 
 == Changelog ==
+
+= 0.2.2 =
+* Refresh the plugin listing with clearer seating chart and seat map setup guidance.
+* Document the Managed Ticketing account requirement and link the WordPress integration guide.
+* Clarify checkout holds, WooCommerce coexistence, and browser SDK loading.
+* Documentation and release metadata only; plugin behavior is unchanged.
 
 = 0.2.1 =
 * Documentation only. Refreshes the plugin listing text and the project
