@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       SeatLayer Seating Charts
  * Plugin URI:        https://seatlayer.io/integrations/wordpress
- * Description:       Interactive seating charts and seat maps for WordPress. Buyers choose seats and buy event tickets through your Stripe or Razorpay account.
- * Version:           0.2.2
+ * Description:       Sell reserved event tickets with interactive seat maps, 3D seat views and live availability. Add charts to WordPress by block or shortcode.
+ * Version:           0.2.3
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            SeatLayer
@@ -45,18 +45,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SEATLAYER_VERSION', '0.2.2' );
+define( 'SEATLAYER_VERSION', '0.2.3' );
 define( 'SEATLAYER_PLUGIN_FILE', __FILE__ );
 define( 'SEATLAYER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEATLAYER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Pinned CDN major. The filename is constant across versions, so tracking a
- * newer release is a one-token change here rather than a rewrite. Pinned to a
- * MAJOR alias (not `latest`) so a published breaking change cannot reach a live
- * buyer page without someone choosing it.
+ * Exact buyer SDK release verified with this plugin. Update the version and
+ * its documented CDN URL together when preparing a plugin release.
  */
-define( 'SEATLAYER_SDK_VERSION', '0' );
+define( 'SEATLAYER_SDK_VERSION', '0.80.3' );
 
 require_once SEATLAYER_PLUGIN_DIR . 'includes/class-seatlayer-settings.php';
 require_once SEATLAYER_PLUGIN_DIR . 'includes/class-seatlayer-api.php';
