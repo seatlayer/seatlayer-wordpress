@@ -6,28 +6,33 @@
 [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/seatlayer-seating-charts.svg)](https://wordpress.org/plugins/seatlayer-seating-charts/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
 
-The official SeatLayer plugin adds an interactive seating chart and seat picker
-to WordPress so you can sell tickets with seat selection on your own site.
-Buyers explore a real venue map, see live availability and prices, choose exact
-seats or ask for the best seats together, and their selection is protected by a
-temporary hold while they check out through your connected Stripe or Razorpay
-account.
+The official SeatLayer plugin adds interactive seating charts and seat maps to
+WordPress for event ticket sales with reserved seats. Buyers choose exact seats
+or find a group with Best Available, explore 3D on supported devices, and check
+out through your connected Stripe or Razorpay account.
+
+Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
+publish them on WordPress with a Gutenberg block or shortcode.
 
 [SeatLayer plugin on WordPress.org](https://wordpress.org/plugins/seatlayer-seating-charts/) ·
 [WordPress seating chart integration guide](https://docs.seatlayer.io/integrations/wordpress/) ·
 [WordPress reserved-seating features](https://seatlayer.io/integrations/wordpress/) ·
 [SeatLayer dashboard](https://app.seatlayer.io/) ·
-[Buyer seat-map demo](https://app.seatlayer.io/demo/play/grand-theatre) ·
-[SeatLayer AI Toolkit](https://github.com/seatlayer/seatlayer-ai-toolkit)
+[Buyer seat-map demo](https://app.seatlayer.io/demo/play/grand-theatre)
 
 ## The buyer experience
 
 - Interactive venue maps with live seat availability
 - Exact-seat selection with section, row, seat, and price details
-- Best-available seating for buyers who want the closest group together
+- Reserved rows, tables, booths and mixed general-admission areas
+- Accessible-seat labels and floor navigation from the published chart
+- Best-available seating for buyers who want a suitable group together
+- Interactive 3D on supported browsers and devices, with the complete 2D picker
+  as fallback
 - Ticket tiers, prices, and active offers shown in the selection journey
 - Temporary seat holds that protect the buyer while they check out
 - Responsive controls designed for desktop and mobile screens
+- Chart branding and category colours configured in SeatLayer
 - Stripe or Razorpay payment through the organizer's connected account
 - Email ticket confirmation after a completed order
 
@@ -35,9 +40,17 @@ Seat availability, holds, prices, offers, and order totals remain authoritative
 on SeatLayer's servers. The WordPress page presents the experience without
 duplicating ticketing state in the WordPress database.
 
+See [interactive 3D seat views](https://seatlayer.io/3d-seat-map/) and
+[best-available seat selection](https://docs.seatlayer.io/buyer-sdk/best-available/)
+for the corresponding buyer workflows. The same renderer has a public
+[53,018-seat stadium demo](https://app.seatlayer.io/demo/play/large-stadium)
+with [published measurements](https://docs.seatlayer.io/platform/renderer-performance/);
+evaluate your own WordPress page, theme and target devices before opening sales.
+
 ## For organizers
 
-- Add a chart with the **SeatLayer seating chart** block
+- Add a chart with the **SeatLayer seating chart** block, including wide/full
+  alignment where the WordPress theme supports it
 - Use `[seatlayer_chart event="ev_..."]` in shortcode-based builders
 - Select events from a dropdown after adding an optional SeatLayer secret key
 - Keep using event keys without storing a secret key in WordPress
@@ -85,7 +98,8 @@ and is used server-side only to populate the block editor's event dropdown.
 
 `event` is required. `height` (320–2000, default 640) and `max_selection`
 (1–50, default 10) are also accepted, and `locale` and `currency` are passed
-through to the seat picker.
+through to the seat picker. Currency is a display fallback; event prices remain
+authoritative.
 
 See [the WordPress.org readme](readme.txt) for the complete requirements,
 external-service disclosures, and frequently asked questions.
@@ -100,16 +114,15 @@ your venue, chart, and event in the
 under Payments, then add the **SeatLayer seating chart** block to a page and
 choose the event. Buyers pick exact seats on your WordPress page, the selection
 is held on SeatLayer's servers, and payment completes through your own gateway
-account. No separate ticketing site or manual seat assignment is involved.
+account. Checkout follows the hosted or eligible in-page flow described above.
 
 ### Is there a WordPress event ticketing plugin with a seat map?
 
 This plugin is the seat-map front end for SeatLayer's reserved-seating and
 ticketing platform. WordPress renders the interactive chart, while venue
 layouts, ticket tiers, pricing, offers, live availability, orders, and ticket
-delivery are managed in SeatLayer. It is not a standalone seating designer and
-does not store ticketing state in your WordPress database, which is what keeps
-two buyers from being sold the same seat.
+delivery are managed in SeatLayer. Venue design stays in the SeatLayer
+dashboard, and authoritative server-side holds prevent overlapping seat sales.
 
 ### Can I use my own payment provider?
 
@@ -148,8 +161,8 @@ you would rather not store it.
 
 The seating chart's stylesheet, the plugin's mount script, and SeatLayer's
 browser SDK load only when a page renders a chart. Pages without a chart load
-no plugin assets. The SDK URL uses the `seatlayer-js@0` release channel, and
-the plugin emits no inline JavaScript.
+no plugin assets. This release pins the SDK to `seatlayer-js@0.80.3`, and the
+plugin emits no inline JavaScript.
 
 ## Continue your WordPress integration
 
@@ -165,9 +178,10 @@ the plugin emits no inline JavaScript.
 - [Compare SeatLayer's mobile seat map SDKs](https://docs.seatlayer.io/buyer-sdk/mobile/)
   when the same events also need a React Native, Flutter, iOS, or Android app.
 - [Explore the 3D seating chart for web buyers](https://seatlayer.io/3d-seat-map/)
-  as a separate browser capability alongside the 2D WordPress chart.
-- [Point AI coding agents at the SeatLayer docs index](https://docs.seatlayer.io/llms.txt)
-  (`llms.txt`) for an agent-readable map of the documentation.
+  available through the picker on supported browsers and devices.
+- Use the [developer integration toolkit](https://github.com/seatlayer/seatlayer-ai-toolkit)
+  and [agent-readable documentation index](https://docs.seatlayer.io/llms.txt)
+  when building a custom SeatLayer integration.
 - [Report a plugin issue](https://github.com/seatlayer/seatlayer-wordpress/issues)
   or ask a question about the WordPress integration.
 
@@ -190,8 +204,9 @@ the plugin emits no inline JavaScript.
 
 The plugin intentionally has no runtime Composer or npm dependency. WordPress's
 HTTP layer handles the small server-side API surface, while the public seating
-experience loads SeatLayer's browser SDK from the `seatlayer-js@0` release
-channel only when required.
+experience loads the exact `seatlayer-js@0.80.3` browser SDK release only when
+required. Update `SEATLAYER_SDK_VERSION` and the documented CDN URL together
+after verifying the new release.
 
 Run the focused local checks:
 

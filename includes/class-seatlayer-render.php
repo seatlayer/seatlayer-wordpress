@@ -39,7 +39,7 @@ class SeatLayer_Render {
 	}
 
 	/**
-	 * The CDN URL for the pinned SDK major.
+	 * The CDN URL for the pinned SDK release.
 	 */
 	public static function sdk_url(): string {
 		return 'https://cdn.seatlayer.io/seatlayer-js@' . SEATLAYER_SDK_VERSION . '/seatlayer.js';
@@ -51,7 +51,7 @@ class SeatLayer_Render {
 	public static function register_assets(): void {
 		/*
 		 * `null` version, deliberately: the version is already IN the CDN path
-		 * (`seatlayer-js@0/`), and appending `?ver=` to a third-party URL we do
+		 * (`seatlayer-js@0.80.3/`), and appending `?ver=` to a third-party URL we do
 		 * not control only risks splitting its cache for no benefit. Plugin Check
 		 * flags a missing version as a warning; this is the case it warns about
 		 * not applying to.
