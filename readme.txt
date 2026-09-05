@@ -1,19 +1,19 @@
 === SeatLayer Seating Charts ===
 Contributors: navincse
-Tags: seating chart, seat selection, event tickets, sell tickets, reserved seating
+Tags: seating chart, seat map, seat selection, event tickets, reserved seating
 Requires at least: 6.3
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.2.1
+Stable tag: 0.2.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Sell tickets with seat selection on WordPress. Visitors pick exact seats on an interactive chart and pay through your own Stripe or Razorpay.
+Interactive seating charts and seat maps for WordPress. Buyers choose seats and buy event tickets through your Stripe or Razorpay account.
 
 == Description ==
 
-Turn a WordPress page into a complete reserved-seating experience and sell
-tickets with seat selection on your own site. Buyers can explore the venue, see
+Add an interactive seating chart and seat map to WordPress, then sell tickets
+with seat selection on your own site. Buyers can explore the venue, see
 live availability and prices, choose exact seats, and continue to checkout
 without calling, emailing, or guessing where they will sit. Payment goes to the
 Stripe or Razorpay account you connect, not to a third-party ticketing site.
@@ -213,6 +213,12 @@ They never pass through this plugin, your WordPress site, or your database.
 [SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 
 == Changelog ==
+
+= 0.2.2 =
+* Refresh the plugin listing with clearer seating chart and seat map setup guidance.
+* Document the Managed Ticketing account requirement and link the WordPress integration guide.
+* Clarify checkout holds, WooCommerce coexistence, and browser SDK loading.
+* Documentation and release metadata only; plugin behavior is unchanged.
 
 = 0.2.1 =
 * Documentation only. Refreshes the plugin listing text and the project
