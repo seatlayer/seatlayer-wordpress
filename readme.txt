@@ -23,6 +23,10 @@ then publish them on WordPress with a Gutenberg block or shortcode.
 [Explore the WordPress seating chart features](https://seatlayer.io/integrations/wordpress/) ·
 [Try the interactive seat selection demo](https://app.seatlayer.io/demo/play/grand-theatre)
 
+= Scale evidence =
+
+SeatLayer is benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures: 200,000 seats chart-ready in 1.95 s with 58 FPS zoom and 60 FPS pan in a desktop benchmark (15 September 2026). Fixtures, method, all runs and SHA-256 manifests: https://github.com/seatlayer/seatlayer-performance · Try the 53,018-seat live demo: https://app.seatlayer.io/demo/play/large-stadium
+
 = Interactive seat maps and reserved seating =
 
 * **Numbered seats and venue sections.** Show row, seat, section, price and
