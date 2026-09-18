@@ -1,21 +1,21 @@
 === SeatLayer Seating Charts ===
 Contributors: navincse
-Tags: seating chart, seat map, seat selection, event tickets, reserved seating
+Tags: seating chart, seat map, seat booking, event tickets, reserved seating
 Requires at least: 6.3
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.3
+Stable tag: 0.2.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Sell reserved event tickets with interactive seat maps, 3D seat views and live availability. Add charts to WordPress by block or shortcode.
+Interactive seating chart and seat map plugin to sell tickets for reserved seats. Block or shortcode, live availability, stadium scale.
 
 == Description ==
 
 SeatLayer is a WordPress seating chart plugin for selling event tickets with
 reserved seats. Add an interactive seat map to a page or post, let visitors
-choose where they sit, and accept payment through your connected Stripe or
-Razorpay account.
+choose where they sit, and accept payment through your own connected payment
+gateway.
 
 Build theatre, auditorium, concert and dinner-show seating plans in SeatLayer,
 then publish them on WordPress with a Gutenberg block or shortcode.
@@ -25,7 +25,11 @@ then publish them on WordPress with a Gutenberg block or shortcode.
 
 = Scale evidence =
 
-SeatLayer is benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures: 200,000 seats chart-ready in 1.95 s with 58 FPS zoom and 60 FPS pan in a desktop benchmark (15 September 2026). Fixtures, method, all runs and SHA-256 manifests: https://github.com/seatlayer/seatlayer-performance · Try the 53,018-seat live demo: https://app.seatlayer.io/demo/play/large-stadium
+SeatLayer is benchmarked on public large-venue fixtures of 100,000, 150,000 and
+200,000 seats: the largest chart is seat-ready in 1.95 s with 58 FPS zoom and
+60 FPS pan in a desktop benchmark (15 September 2026). Fixtures, method, all
+runs and SHA-256 manifests: https://github.com/seatlayer/seatlayer-performance ·
+Try the live stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k
 
 = Interactive seat maps and reserved seating =
 
@@ -79,16 +83,16 @@ dropdown. Scripts and styles load only on pages containing a chart.
 See the [WordPress seat map setup guide](https://docs.seatlayer.io/integrations/wordpress/)
 for block settings and shortcode options.
 
-= Accept payments through Stripe or Razorpay =
+= Accept payments through your own payment gateway =
 
 **Hosted checkout:** buyers continue from seat selection to SeatLayer's hosted
-event page and pay through your connected account.
+event page and pay through your own connected payment gateway.
 
 **Checkout from your WordPress page:** enable **Let buyers pay without leaving
-this site** under **Settings → SeatLayer**. Razorpay opens on the page; Stripe
-opens its secure checkout and returns the buyer to the WordPress page.
-This needs in-page checkout access and a registered embed domain. Hosted
-checkout remains the fallback.
+this site** under **Settings → SeatLayer**. In-page gateways collect payment on
+the page itself; a redirecting gateway opens its own secure checkout and returns
+the buyer to the WordPress page. This needs in-page checkout access and a
+registered embed domain. Hosted checkout remains the fallback.
 
 Manage venue layouts, events, ticket prices, offers, orders and ticket delivery
 in the [SeatLayer dashboard](https://app.seatlayer.io/).
@@ -108,7 +112,8 @@ charges, and your payment provider has its own fees. See
 1. Install and activate **SeatLayer Seating Charts**.
 2. Request Managed Ticketing access in SeatLayer. Once approved, create and
    publish a venue chart, then create your Managed event.
-3. Connect Stripe or Razorpay under **Payments** in the SeatLayer dashboard.
+3. Connect your payment gateway (Stripe or Razorpay) under **Payments** in the
+   SeatLayer dashboard.
 4. Add the **SeatLayer seating chart** block or `[seatlayer_chart]` shortcode
    to a WordPress page and enter your event key.
 5. Check the seating chart and checkout flow, then publish your event page.
@@ -117,6 +122,22 @@ A secret key under **Settings → SeatLayer** is optional. It enables the
 editor's event dropdown; the public chart works with the event key alone.
 
 == Frequently Asked Questions ==
+
+= Is this a WordPress seating chart plugin or a full ticketing plugin? =
+
+Both, for seated events. WordPress renders the interactive seating chart and
+the seat picker, and the buyer completes checkout through your own connected
+payment gateway, so ticket money arrives in your own gateway account. Venue
+layouts, inventory, holds, orders and ticket delivery stay in SeatLayer, which
+bills its hosted-ticket usage separately from your gateway's fees.
+
+= Can I sell tickets for a stadium or arena from WordPress? =
+
+Yes. Stadium and arena charts use the same buyer renderer as the published
+large-venue benchmark, embedded on your own WordPress page. See
+[arena and stadium seating charts](https://seatlayer.io/arenas-stadiums/), and
+evaluate your own chart, WordPress theme and target devices before opening
+sales.
 
 = Can I create the seating plan inside WordPress? =
 
@@ -131,16 +152,16 @@ without a chart uses a different ticketing flow.
 
 = Can I use it for a large theatre, arena or stadium? =
 
-The plugin uses SeatLayer's shared buyer renderer. Try the public
-[53,018-seat stadium demo](https://app.seatlayer.io/demo/play/large-stadium)
-and read the [large-chart renderer measurements](https://docs.seatlayer.io/platform/renderer-performance/).
-These measure the shared renderer; also evaluate your own chart, WordPress
-theme and target devices before opening sales.
+The plugin uses SeatLayer's shared buyer renderer. Read the
+[large-chart renderer measurements](https://docs.seatlayer.io/platform/renderer-performance/)
+for what that renderer does on big venue charts. Those measure the shared
+renderer; also evaluate your own chart, WordPress theme and target devices
+before opening sales.
 
 = Does this integrate with WooCommerce checkout? =
 
-It can run on a site that also uses WooCommerce. SeatLayer ticket purchases use
-your connected Stripe or Razorpay account and do not create WooCommerce cart
+It can run on a site that also uses WooCommerce. SeatLayer ticket purchases go
+through your own connected payment gateway and do not create WooCommerce cart
 line items or orders.
 
 = Can two buyers purchase the same seat? =
@@ -170,7 +191,7 @@ requires a SeatLayer account. These services are contacted during use:
 **SeatLayer CDN (`cdn.seatlayer.io`)**
 
 Loads the seating-chart renderer only on pages containing a chart, from
-`https://cdn.seatlayer.io/seatlayer-js@0.80.3/seatlayer.js`.
+`https://cdn.seatlayer.io/seatlayer-js@0.92.5/seatlayer.js`.
 The browser sends its normal IP address, user agent and referrer; the plugin
 adds no visitor data to that script request.
 
@@ -204,7 +225,23 @@ through this plugin or your WordPress database.
 [SeatLayer Terms of Service](https://seatlayer.io/terms) ·
 [SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 
+== Screenshots ==
+
+1. Interactive seating chart on a WordPress page, with venue sections, category prices and live availability.
+2. Seat map zoomed to individual numbered seats, with a chosen seat in the selection panel.
+3. 3D seat view of the venue, so buyers can judge the view before they buy.
+4. Checkout hold countdown protecting the selected seats while the buyer pays.
+5. Mobile seat selection: touch seat map, numbered seats and the selection summary on a phone.
+6. Stadium-scale seat map: a large arena chart in the same buyer renderer.
+7. The SeatLayer seating chart block in the WordPress block editor, with its block settings.
+8. The seating chart shortcode in the block editor, for classic and page-builder layouts.
+
 == Changelog ==
+
+= 0.2.4 =
+* Add listing screenshots of the seat map, 3D seat view, mobile seat selection, hold countdown, block editor and shortcode.
+* Update the pinned buyer SDK CDN release to the verified 0.92.5.
+* Reword payment, scale and FAQ copy, and add seating chart and stadium answers.
 
 = 0.2.3 =
 * Detail seating chart features, 3D seat views, WordPress controls and setup answers.
@@ -223,7 +260,7 @@ through this plugin or your WordPress database.
 
 = 0.2.0 =
 * Add optional in-page checkout with hosted-checkout fallback.
-* Return Stripe buyers to the registered WordPress page after payment.
+* Return card buyers to the registered WordPress page after payment.
 * Remove plugin settings on uninstall and translate chart error messages.
 * Document external services and data sent.
 
