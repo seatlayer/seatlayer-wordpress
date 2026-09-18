@@ -3,7 +3,7 @@
  * Plugin Name:       SeatLayer Seating Charts
  * Plugin URI:        https://seatlayer.io/integrations/wordpress
  * Description:       Sell reserved event tickets with interactive seat maps, 3D seat views and live availability. Add charts to WordPress by block or shortcode.
- * Version:           0.2.4
+ * Version:           0.2.5
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            SeatLayer
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SEATLAYER_VERSION', '0.2.4' );
+define( 'SEATLAYER_VERSION', '0.2.5' );
 define( 'SEATLAYER_PLUGIN_FILE', __FILE__ );
 define( 'SEATLAYER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEATLAYER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
