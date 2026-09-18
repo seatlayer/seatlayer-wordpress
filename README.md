@@ -68,13 +68,13 @@ evaluate your own WordPress page, theme and target devices before opening sales.
 
 ## Checkout choices
 
-### Hosted checkout — default
+### Hosted checkout (default)
 
 The chart runs on the WordPress page. After choosing seats, the buyer continues
 to SeatLayer's hosted buyer page to complete checkout. This requires the least
 WordPress configuration and remains the automatic fallback.
 
-### In-page checkout — optional
+### In-page checkout (optional)
 
 Enable **Let buyers pay without leaving this site** under
 **Settings → SeatLayer**. An in-page gateway collects payment on the page; a
@@ -105,8 +105,8 @@ and is used server-side only to populate the block editor's event dropdown.
 [seatlayer_chart event="ev_123" locale="en" currency="USD"]
 ```
 
-`event` is required. `height` (320–2000, default 640) and `max_selection`
-(1–50, default 10) are also accepted, and `locale` and `currency` are passed
+`event` is required. `height` (320 to 2000, default 640) and `max_selection`
+(1 to 50, default 10) are also accepted, and `locale` and `currency` are passed
 through to the seat picker. Currency is a display fallback; event prices remain
 authoritative.
 
