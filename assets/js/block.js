@@ -85,7 +85,7 @@
 			var blockProps = useBlockProps();
 			var events = useEvents();
 
-			var options = [ { label: __( '— Select an event —', 'seatlayer-seating-charts' ), value: '' } ];
+			var options = [ { label: __( 'Select an event', 'seatlayer-seating-charts' ), value: '' } ];
 			for ( var i = 0; i < events.events.length; i++ ) {
 				var item = events.events[ i ];
 				options.push( {
