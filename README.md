@@ -6,10 +6,12 @@
 [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/seatlayer-seating-charts.svg)](https://wordpress.org/plugins/seatlayer-seating-charts/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
 
+SeatLayer is interactive seating chart software built for stadium scale. Platforms embed the white-label seat picker with their own checkout; organizers sell seated events on their own website with their own payment gateway.
+
 The official SeatLayer plugin adds interactive seating charts and seat maps to
 WordPress for event ticket sales with reserved seats. Buyers choose exact seats
 or find a group with Best Available, explore 3D on supported devices, and check
-out through your connected Stripe or Razorpay account.
+out through the payment gateway the organizer connects to SeatLayer.
 
 Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
 publish them on WordPress with a Gutenberg block or shortcode.
@@ -20,9 +22,11 @@ publish them on WordPress with a Gutenberg block or shortcode.
 [SeatLayer dashboard](https://app.seatlayer.io/) ·
 [Buyer seat-map demo](https://app.seatlayer.io/demo/play/grand-theatre)
 
+**Start here:** [Quickstart](https://docs.seatlayer.io/start/quickstart/) · [Holds and checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/) · [WordPress guide](https://docs.seatlayer.io/integrations/wordpress/) · [SDK catalog](https://docs.seatlayer.io/sdk-catalog.json) · [Pricing](https://seatlayer.io/pricing/): $0 entry, 100 free confirmed-sold-seat credits per organization each month, then $0.10 down to $0.05 a credit, and credits never expire.
+
 ## Scale evidence
 
-SeatLayer is benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures: 200,000 seats chart-ready in 1.95 s with 58 FPS zoom and 60 FPS pan in a desktop benchmark (15 September 2026). Fixtures, method, all runs and SHA-256 manifests: https://github.com/seatlayer/seatlayer-performance · Try the 53,018-seat live demo: https://app.seatlayer.io/demo/play/large-stadium
+Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 September 2026: 200,000 seats chart-ready in 1.95 s, desktop, local production build. Fixtures, method and run logs: https://github.com/seatlayer/seatlayer-performance. Live 200,000-seat stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k. This is renderer evidence, not a concurrent-buyer claim.
 
 ## The buyer experience
 
@@ -47,7 +51,7 @@ duplicating ticketing state in the WordPress database.
 See [interactive 3D seat views](https://seatlayer.io/3d-seat-map/) and
 [best-available seat selection](https://docs.seatlayer.io/buyer-sdk/best-available/)
 for the corresponding buyer workflows. The same renderer has a public
-[53,018-seat stadium demo](https://app.seatlayer.io/demo/play/large-stadium)
+[200,000-seat stadium demo](https://app.seatlayer.io/demo/play/century-stadium-200k)
 with [published measurements](https://docs.seatlayer.io/platform/renderer-performance/);
 evaluate your own WordPress page, theme and target devices before opening sales.
 
