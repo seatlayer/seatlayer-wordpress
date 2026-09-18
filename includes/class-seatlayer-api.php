@@ -42,7 +42,7 @@ class SeatLayer_API {
 		if ( '' === $key ) {
 			return array(
 				'ok'    => false,
-				'error' => __( 'No secret key saved. Add one in Settings → SeatLayer, or enter the event key by hand.', 'seatlayer-seating-charts' ),
+				'error' => __( 'No secret key saved. Add one in Settings > SeatLayer, or enter the event key by hand.', 'seatlayer-seating-charts' ),
 			);
 		}
 
@@ -86,7 +86,7 @@ class SeatLayer_API {
 		if ( 401 === $status || 403 === $status ) {
 			return array(
 				'ok'    => false,
-				'error' => __( 'SeatLayer rejected the secret key. Check it in Settings → SeatLayer.', 'seatlayer-seating-charts' ),
+				'error' => __( 'SeatLayer rejected the secret key. Check it in Settings > SeatLayer.', 'seatlayer-seating-charts' ),
 			);
 		}
 

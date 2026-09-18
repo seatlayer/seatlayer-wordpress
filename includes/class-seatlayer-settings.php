@@ -253,7 +253,7 @@ class SeatLayer_Settings {
 			<p style="max-width:60em;">
 				<?php
 				esc_html_e(
-					'Add a seating chart to any page with the SeatLayer block or the [seatlayer_chart] shortcode. Buyers pick seats on your site and pay through your own Stripe or Razorpay account — connect that in your SeatLayer dashboard under Payments.',
+					'Add a seating chart to any page with the SeatLayer block or the [seatlayer_chart] shortcode. Buyers pick seats on your site and pay through your own payment gateway. Connect it in your SeatLayer dashboard under Payments.',
 					'seatlayer-seating-charts'
 				);
 				?>
@@ -277,7 +277,7 @@ class SeatLayer_Settings {
 								value=""
 								class="regular-text"
 								autocomplete="off"
-								placeholder="<?php echo $has_key ? esc_attr__( 'Saved — leave blank to keep', 'seatlayer-seating-charts' ) : esc_attr( 'sk_live_…' ); ?>"
+								placeholder="<?php echo $has_key ? esc_attr__( 'Saved. Leave blank to keep', 'seatlayer-seating-charts' ) : esc_attr( 'sk_live_…' ); ?>"
 							/>
 							<p class="description" style="max-width:44em;">
 								<?php
@@ -331,7 +331,7 @@ class SeatLayer_Settings {
 								<strong><?php esc_html_e( 'Requires:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
-									'in-page checkout enabled on your SeatLayer account. It is granted per account — ask SeatLayer if you are not sure. Without it this setting quietly does nothing and buyers take the normal redirect, so switching it on early breaks nothing.',
+									'in-page checkout enabled on your SeatLayer account. It is granted per account. Ask SeatLayer if you are not sure. Without it this setting quietly does nothing and buyers take the normal redirect, so switching it on early breaks nothing.',
 									'seatlayer-seating-charts'
 								);
 								?>
@@ -341,7 +341,7 @@ class SeatLayer_Settings {
 								<strong><?php esc_html_e( 'What this changes, honestly:', 'seatlayer-seating-charts' ); ?></strong>
 								<?php
 								esc_html_e(
-									'Razorpay collects payment entirely on this page — the buyer never leaves. Stripe cards still open Stripe\'s own page, but the buyer now returns to this exact page afterwards instead of finishing on SeatLayer. That return needs the one step below.',
+									'Some gateways collect payment entirely on this page, so the buyer never leaves. Card gateways that open their own page bring the buyer back to this exact page afterwards instead of finishing on SeatLayer. That return needs the one step below.',
 									'seatlayer-seating-charts'
 								);
 								?>
@@ -360,7 +360,7 @@ class SeatLayer_Settings {
 								<br />
 								<?php
 								esc_html_e(
-									'Copy the whole line. The match is exact — no wildcards, and http and https count as different entries.',
+									'Copy the whole line. The match is exact: no wildcards, and http and https count as different entries.',
 									'seatlayer-seating-charts'
 								);
 								?>
@@ -369,7 +369,7 @@ class SeatLayer_Settings {
 							<p class="description" style="max-width:44em;">
 								<?php
 								esc_html_e(
-									'Skipping it costs you nothing but the return trip. SeatLayer ignores a return address it was not told about rather than refusing the payment, so the buyer still pays, the seats are still sold, and the tickets are still emailed — they just finish on SeatLayer\'s page instead of back here.',
+									'Skipping it costs you nothing but the return trip. SeatLayer ignores a return address it was not told about rather than refusing the payment, so the buyer still pays, the seats are still sold, and the tickets are still emailed. They just finish on SeatLayer\'s page instead of back here.',
 									'seatlayer-seating-charts'
 								);
 								?>
