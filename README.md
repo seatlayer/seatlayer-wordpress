@@ -41,7 +41,7 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 - Temporary seat holds that protect the buyer while they check out
 - Responsive controls designed for desktop and mobile screens
 - Chart branding and category colours configured in SeatLayer
-- Stripe or Razorpay payment through the organizer's connected account
+- Payment through the organizer's own connected payment gateway account
 - Email ticket confirmation after a completed order
 
 Seat availability, holds, prices, offers, and order totals remain authoritative
@@ -77,9 +77,10 @@ WordPress configuration and remains the automatic fallback.
 ### In-page checkout — optional
 
 Enable **Let buyers pay without leaving this site** under
-**Settings → SeatLayer**. Razorpay opens on the page; Stripe opens its secure
-checkout and returns the buyer to the original WordPress page. The site's exact
-origin must be registered as an embed domain in SeatLayer.
+**Settings → SeatLayer**. An in-page gateway collects payment on the page; a
+redirecting gateway opens its own secure checkout and returns the buyer to the
+original WordPress page. The site's exact origin must be registered as an embed
+domain in SeatLayer.
 
 ## Quick start
 
@@ -91,7 +92,7 @@ for the service's usage charges.
 1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
 2. Create a venue, chart, event, ticket tiers, and any offers in the
    [SeatLayer dashboard](https://app.seatlayer.io/).
-3. Connect Stripe or Razorpay under **Payments**.
+3. Connect your payment gateway (Stripe or Razorpay) under **Payments**.
 4. Add the **SeatLayer seating chart** block to a WordPress page.
 5. Enter or select the event and publish the page.
 
@@ -118,7 +119,7 @@ external-service disclosures, and frequently asked questions.
 
 With Managed Ticketing access approved, install the SeatLayer plugin, create
 your venue, chart, and event in the
-[SeatLayer dashboard](https://app.seatlayer.io/), connect Stripe or Razorpay
+[SeatLayer dashboard](https://app.seatlayer.io/), connect your payment gateway
 under Payments, then add the **SeatLayer seating chart** block to a page and
 choose the event. Buyers pick exact seats on your WordPress page, the selection
 is held on SeatLayer's servers, and payment completes through your own gateway
@@ -146,7 +147,7 @@ instead.
 ### Does this work with WooCommerce?
 
 The plugin can run on a site that also uses WooCommerce. SeatLayer ticket
-purchases use your connected Stripe or Razorpay account and do not create
+purchases run through your own connected payment gateway and do not create
 WooCommerce cart line items or orders.
 
 ### Can two people buy the same seat?
@@ -169,7 +170,7 @@ you would rather not store it.
 
 The seating chart's stylesheet, the plugin's mount script, and SeatLayer's
 browser SDK load only when a page renders a chart. Pages without a chart load
-no plugin assets. This release pins the SDK to `seatlayer-js@0.80.3`, and the
+no plugin assets. This release pins the SDK to `seatlayer-js@0.92.5`, and the
 plugin emits no inline JavaScript.
 
 ## Continue your WordPress integration
@@ -212,7 +213,7 @@ plugin emits no inline JavaScript.
 
 The plugin intentionally has no runtime Composer or npm dependency. WordPress's
 HTTP layer handles the small server-side API surface, while the public seating
-experience loads the exact `seatlayer-js@0.80.3` browser SDK release only when
+experience loads the exact `seatlayer-js@0.92.5` browser SDK release only when
 required. Update `SEATLAYER_SDK_VERSION` and the documented CDN URL together
 after verifying the new release.
 
