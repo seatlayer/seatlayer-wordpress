@@ -4,7 +4,7 @@ Tags: seating chart, seat map, seat booking, event tickets, reserved seating
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.4
+Stable tag: 0.2.5
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -235,8 +235,12 @@ through this plugin or your WordPress database.
 6. Stadium-scale seat map: a large arena chart in the same buyer renderer.
 7. The SeatLayer seating chart block in the WordPress block editor, with its block settings.
 8. The seating chart shortcode in the block editor, for classic and page-builder layouts.
+9. Plugin settings page in wp-admin, where the optional server-side secret key and checkout return settings live
 
 == Changelog ==
+
+= 0.2.5 =
+* Refreshed listing screenshots for the block editor and settings screen.
 
 = 0.2.4 =
 * Add listing screenshots of the seat map, 3D seat view, mobile seat selection, hold countdown, block editor and shortcode.
