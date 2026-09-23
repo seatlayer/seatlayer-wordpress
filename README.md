@@ -79,20 +79,20 @@ WordPress configuration and remains the automatic fallback.
 Enable **Let buyers pay without leaving this site** under
 **Settings → SeatLayer**. An in-page gateway collects payment on the page; a
 redirecting gateway opens its own secure checkout and returns the buyer to the
-original WordPress page. The site's exact origin must be registered as an embed
-domain in SeatLayer.
+original WordPress page. Add your site's address once in SeatLayer so the buyer
+returns to your page.
 
 ## Quick start
 
-Request Managed Ticketing access for your SeatLayer organization first. Once
-approved, Hosted Checkout is enabled for the account and you can create a
-Managed event. See [Managed Ticketing pricing](https://seatlayer.io/pricing/)
-for the service's usage charges.
+Setup is self-serve with no approval step. The plugin is free; SeatLayer charges
+$0.50 per confirmed ticket, with your first 25 tickets free and no subscription.
+See [pricing](https://seatlayer.io/pricing/).
 
 1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
 2. Create a venue, chart, event, ticket tiers, and any offers in the
    [SeatLayer dashboard](https://app.seatlayer.io/).
-3. Connect your payment gateway (Stripe or Razorpay) under **Payments**.
+3. Connect your payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago,
+   Xendit or Flutterwave) under **Payments**.
 4. Add the **SeatLayer seating chart** block to a WordPress page.
 5. Enter or select the event and publish the page.
 
@@ -117,7 +117,7 @@ external-service disclosures, and frequently asked questions.
 
 ### How do I sell tickets with seat selection on WordPress?
 
-With Managed Ticketing access approved, install the SeatLayer plugin, create
+Install the SeatLayer plugin, create
 your venue, chart, and event in the
 [SeatLayer dashboard](https://app.seatlayer.io/), connect your payment gateway
 under Payments, then add the **SeatLayer seating chart** block to a page and
@@ -135,14 +135,11 @@ dashboard, and authoritative server-side holds prevent overlapping seat sales.
 
 ### Can I use my own payment provider?
 
-Payment runs through the Stripe or Razorpay account you connect to SeatLayer,
-so the money arrives in your own gateway account rather than being collected on
-your behalf. SeatLayer computes the authoritative amount from its own hold
-records and never accepts a price from the WordPress page. Other providers are
-not supported by this plugin today; if you need a different gateway, build a
-custom checkout against the
-[SeatLayer holds and checkout flow](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/)
-instead.
+Yes. Payment runs through your own account on Stripe, PayPal, Razorpay, Tap,
+Mercado Pago, Xendit or Flutterwave, so the money arrives in your own gateway
+account rather than being collected on your behalf. SeatLayer computes the
+authoritative amount from its own hold records and never accepts a price from
+the WordPress page. Need another gateway? Request it from SeatLayer.
 
 ### Does this work with WooCommerce?
 
