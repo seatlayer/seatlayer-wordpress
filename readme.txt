@@ -14,8 +14,7 @@ Free WordPress seating chart and ticketing plugin. Buyers pick exact seats and p
 
 SeatLayer is a WordPress seating chart plugin for selling event tickets with
 reserved seats. Add an interactive seat map to a page or post, let visitors
-choose where they sit, and accept payment through your own connected payment
-gateway.
+choose where they sit, and take payment into your own account.
 
 Build theatre, auditorium, concert and dinner-show seating plans in SeatLayer,
 then publish them on WordPress with a Gutenberg block or shortcode.
@@ -62,8 +61,8 @@ colours come from your SeatLayer venue configuration.
   SeatLayer.
 * **Temporary seat holds** protect the selected inventory during checkout,
   with a countdown and automatic release when a hold expires.
-* **Confirmed bookings and ticket emails** follow successful payment through
-  the organizer's connected account.
+* **Confirmed bookings and ticket emails** follow successful payment into
+  the organizer's own account.
 
 SeatLayer manages inventory, payment totals and bookings centrally, without
 duplicating ticket inventory in your WordPress database.
@@ -87,7 +86,7 @@ for block settings and shortcode options.
 = Accept payments through your own payment gateway =
 
 **Hosted checkout:** buyers continue from seat selection to SeatLayer's hosted
-event page and pay through your own connected payment gateway.
+event page and pay, with the money paid into your own account.
 
 **Checkout from your WordPress page:** once in-page checkout is on for your
 SeatLayer account, enable **Let buyers pay without leaving this site** under
@@ -107,8 +106,8 @@ the door from a phone browser.
 = Pricing =
 
 The plugin is free. Selling is self-serve with no approval step: you need a free
-SeatLayer account, a published seating chart, an event and a connected payment
-gateway. SeatLayer charges $0.50 per confirmed ticket, and your first 25 tickets
+SeatLayer account, a published seating chart, an event and payments set up
+under Payments. SeatLayer charges $0.50 per confirmed ticket, and your first 25 tickets
 are free. There is no subscription and no percentage of the ticket price; your
 payment gateway charges its own processing fee. See
 [pricing](https://seatlayer.io/pricing/).
@@ -236,7 +235,7 @@ The URL carries the event key and hold ID, not an amount or buyer details.
 
 **The organizer's payment gateway (one of the 14 SeatLayer supports, such as Stripe, PayPal or Square)**
 
-After seat selection, processes payment through the organizer's connected
+After seat selection, processes payment into the organizer's own payment
 account. SeatLayer sends the amount, currency and buyer email needed for
 payment. Card details go directly to the payment provider and never pass
 through this plugin or your WordPress database.

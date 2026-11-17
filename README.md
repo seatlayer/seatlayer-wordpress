@@ -44,7 +44,7 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 - Temporary seat holds that protect the buyer while they check out
 - Responsive controls designed for desktop and mobile screens
 - Chart branding and category colours configured in SeatLayer
-- Payment through the organizer's own connected payment gateway account
+- Payment into the organizer's own account, through one of SeatLayer's 14 payment gateways
 - Email ticket confirmation after a completed order
 
 Seat availability, holds, prices, offers, and order totals remain authoritative
