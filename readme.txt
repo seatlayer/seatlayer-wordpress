@@ -163,7 +163,7 @@ browser.
 = Can I sell tickets for a stadium or arena from WordPress? =
 
 Yes. SeatLayer's seat map handles stadium charts: a 200,000-seat stadium is
-ready to browse in 1.95 s. SeatLayer was also tested at 10,000 simulated
+ready to browse in 1.95 s on desktop. SeatLayer was also tested at 10,000 simulated
 concurrent buyers on one event, with engine-side hold latency p99 9 ms and zero
 server errors.
 
