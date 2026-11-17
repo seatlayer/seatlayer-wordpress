@@ -94,8 +94,8 @@ the page itself; a redirecting gateway opens its own secure checkout and returns
 the buyer to the WordPress page. Add your site's address once in SeatLayer so
 the buyer returns to your page. Hosted checkout remains the fallback.
 
-Supported gateways: Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit and
-Flutterwave. Ticket money goes straight to your own account.
+SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square.
+Ticket money goes straight to your own account.
 
 Manage venue layouts, events, ticket prices, offers, orders, refunds and ticket
 delivery in the [SeatLayer dashboard](https://app.seatlayer.io/). Buyers get a
@@ -116,8 +116,9 @@ payment gateway charges its own processing fee. See
 1. Install and activate **SeatLayer Seating Charts**.
 2. Sign up free at [SeatLayer](https://app.seatlayer.io/), create and publish
    a venue chart, then create your event.
-3. Connect your payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago,
-   Xendit or Flutterwave) under **Payments** in the SeatLayer dashboard.
+3. Set up payments under **Payments** in the SeatLayer dashboard. SeatLayer
+   supports 14 payment gateways, including Stripe, PayPal and Square, and ticket
+   money is paid to your own account.
 4. Add the **SeatLayer seating chart** block or `[seatlayer_chart]` shortcode
    to a WordPress page and enter your event key.
 5. Check the seating chart and checkout flow, then publish your event page.
@@ -135,8 +136,8 @@ ticket, your first 25 tickets are free, and there is no subscription.
 = Is this a WordPress seating chart plugin or a full ticketing plugin? =
 
 Both, for seated events. WordPress renders the interactive seating chart and
-the seat picker, and the buyer completes checkout through your own connected
-payment gateway, so ticket money arrives in your own gateway account. Venue
+the seat picker, and the buyer completes checkout through the organizer's own
+payment account, so ticket money arrives in your own gateway account. Venue
 layouts, inventory, holds, orders and ticket delivery stay in SeatLayer, which
 bills its hosted-ticket usage separately from your gateway's fees.
 
@@ -148,8 +149,9 @@ Elementor.
 
 = Which payment gateways can buyers use? =
 
-Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit and Flutterwave, connected
-to your own account. Need another gateway? Request it from SeatLayer.
+SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square,
+paid to your own account. Need a gateway that isn't listed? Request it from
+SeatLayer.
 
 = Do buyers get e-tickets with QR codes? =
 
@@ -187,7 +189,7 @@ before opening sales.
 = Does this integrate with WooCommerce checkout? =
 
 It can run on a site that also uses WooCommerce. SeatLayer ticket purchases go
-through your own connected payment gateway and do not create WooCommerce cart
+through the organizer's own payment account and do not create WooCommerce cart
 line items or orders.
 
 = Can two buyers purchase the same seat? =
@@ -239,7 +241,7 @@ For hosted checkout, redirects the buyer to
 `https://app.seatlayer.io/e/EVENT?hold=HOLD_ID` after seat selection.
 The URL carries the event key and hold ID, not an amount or buyer details.
 
-**The organizer's payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit or Flutterwave)**
+**The organizer's payment gateway (one of the 14 SeatLayer supports, such as Stripe, PayPal or Square)**
 
 After seat selection, processes payment through the organizer's connected
 account. SeatLayer sends the amount, currency and buyer email needed for

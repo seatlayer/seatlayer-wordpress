@@ -93,8 +93,9 @@ See [pricing](https://seatlayer.io/pricing/).
 1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
 2. Create a venue, chart, event, ticket tiers, and any offers in the
    [SeatLayer dashboard](https://app.seatlayer.io/).
-3. Connect your payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago,
-   Xendit or Flutterwave) under **Payments**.
+3. Set up payments under **Payments**. SeatLayer supports 14 payment gateways,
+   including Stripe, PayPal and Square, and ticket money is paid to your own
+   account ([all 14](https://seatlayer.io/payments/)).
 4. Add the **SeatLayer seating chart** block to a WordPress page.
 5. Enter or select the event and publish the page.
 
@@ -137,16 +138,16 @@ dashboard, and authoritative server-side holds prevent overlapping seat sales.
 
 ### Can I use my own payment provider?
 
-Yes. Payment runs through your own account on Stripe, PayPal, Razorpay, Tap,
-Mercado Pago, Xendit or Flutterwave, so the money arrives in your own gateway
-account rather than being collected on your behalf. SeatLayer computes the
-authoritative amount from its own hold records and never accepts a price from
-the WordPress page. Need another gateway? Request it from SeatLayer.
+Yes. SeatLayer supports 14 payment gateways, including Stripe, PayPal and
+Square, and ticket money is paid to your own account rather than collected on
+your behalf. SeatLayer works out the amount from its own hold records and never
+accepts a price from the WordPress page. Need a gateway that isn't listed?
+Request it from SeatLayer.
 
 ### Does this work with WooCommerce?
 
 The plugin can run on a site that also uses WooCommerce. SeatLayer ticket
-purchases run through your own connected payment gateway and do not create
+purchases run through the organizer's own payment account and do not create
 WooCommerce cart line items or orders.
 
 ### Can two people buy the same seat?
