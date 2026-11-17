@@ -37,8 +37,9 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 - Reserved rows, tables, booths and mixed general-admission areas
 - Accessible-seat labels and floor navigation from the published chart
 - Best-available seating for buyers who want a suitable group together
-- Interactive 3D on supported browsers and devices, with the complete 2D picker
-  as fallback
+- Interactive 3D with the view from each seat, on every chart up to 60,000
+  seats, on supported browsers and devices, with the complete 2D picker as
+  fallback
 - Ticket tiers, prices, and active offers shown in the selection journey
 - Temporary seat holds that protect the buyer while they check out
 - Responsive controls designed for desktop and mobile screens
