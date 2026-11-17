@@ -79,10 +79,11 @@ WordPress configuration and remains the automatic fallback.
 ### In-page checkout (optional)
 
 Enable **Let buyers pay without leaving this site** under
-**Settings → SeatLayer**. An in-page gateway collects payment on the page; a
-redirecting gateway opens its own secure checkout and returns the buyer to the
-original WordPress page. Add your site's address once in SeatLayer so the buyer
-returns to your page.
+**Settings → SeatLayer** once in-page checkout is on for your SeatLayer account;
+until then the setting changes nothing and buyers use hosted checkout. Some
+gateways collect payment on the page itself; a gateway that opens its own secure
+checkout returns the buyer to the same WordPress page. Add your site's address
+once in SeatLayer so the buyer returns to your page.
 
 ## Quick start
 

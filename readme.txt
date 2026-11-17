@@ -88,10 +88,11 @@ for block settings and shortcode options.
 **Hosted checkout:** buyers continue from seat selection to SeatLayer's hosted
 event page and pay through your own connected payment gateway.
 
-**Checkout from your WordPress page:** enable **Let buyers pay without leaving
-this site** under **Settings → SeatLayer**. In-page gateways collect payment on
-the page itself; a redirecting gateway opens its own secure checkout and returns
-the buyer to the WordPress page. Add your site's address once in SeatLayer so
+**Checkout from your WordPress page:** once in-page checkout is on for your
+SeatLayer account, enable **Let buyers pay without leaving this site** under
+**Settings → SeatLayer**. In-page gateways collect payment on the page itself;
+a redirecting gateway opens its own secure checkout and returns the buyer to
+the WordPress page. Add your site's address once in SeatLayer so
 the buyer returns to your page. Hosted checkout remains the fallback.
 
 SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square.
