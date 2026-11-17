@@ -52,10 +52,9 @@ duplicating ticketing state in the WordPress database.
 
 See [interactive 3D seat views](https://seatlayer.io/3d-seat-map/) and
 [best-available seat selection](https://docs.seatlayer.io/buyer-sdk/best-available/)
-for the corresponding buyer workflows. The same renderer has a public
+for the buyer workflows, and open the
 [200,000-seat stadium demo](https://app.seatlayer.io/demo/play/century-stadium-200k)
-with [published measurements](https://docs.seatlayer.io/platform/renderer-performance/);
-evaluate your own WordPress page, theme and target devices before opening sales.
+to see SeatLayer's seat map at stadium scale.
 
 ## For organizers
 
