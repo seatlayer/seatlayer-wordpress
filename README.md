@@ -120,13 +120,13 @@ external-service disclosures, and frequently asked questions.
 
 ### How do I sell tickets with seat selection on WordPress?
 
-Install the SeatLayer plugin, create
-your venue, chart, and event in the
-[SeatLayer dashboard](https://app.seatlayer.io/), connect your payment gateway
-under Payments, then add the **SeatLayer seating chart** block to a page and
-choose the event. Buyers pick exact seats on your WordPress page, the selection
-is held on SeatLayer's servers, and payment completes through your own gateway
-account. Checkout follows the hosted or eligible in-page flow described above.
+Install the free SeatLayer plugin, set up your venue and event in your SeatLayer
+account, and add the SeatLayer seating chart block or the `[seatlayer_chart]`
+shortcode to any page. Buyers pick exact seats or a group with Best Available,
+can look at the venue in 3D on charts up to 60,000 seats, and keep their seats
+on hold while they pay. Checkout supports 14 payment gateways, including Stripe,
+PayPal and Square, and ticket money is paid to your own account. SeatLayer
+charges $0.50 per ticket, with your first 25 free.
 
 ### Is there a WordPress event ticketing plugin with a seat map?
 
@@ -152,11 +152,11 @@ WooCommerce cart line items or orders.
 
 ### Can two people buy the same seat?
 
-No. A temporary hold reserves the buyer's selected inventory on SeatLayer's
-servers during checkout. Only one hold can exist per seat. If the buyer does
-not pay in time, the hold expires automatically and the seat returns to sale.
-In the rare case where a payment succeeds after the hold expired, the buyer is
-refunded automatically and the order is flagged in the SeatLayer dashboard.
+No. A temporary hold gives each selected seat to one buyer while they check
+out, and only one hold can exist per seat. If the buyer does not pay in time,
+the hold expires and the seat returns to sale. If a payment arrives after its
+hold expired and the seats can no longer be booked, the buyer is refunded
+automatically and the order is flagged in your SeatLayer dashboard.
 
 ### Do I need a SeatLayer secret key?
 
