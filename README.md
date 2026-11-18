@@ -1,6 +1,4 @@
-# SeatLayer WordPress Seating Chart Plugin
-
-![SeatLayer interactive seating charts](.wordpress-org/banner-1544x500.png)
+# SeatLayer Seating Chart Plugin for WordPress: sell reserved seats on your site
 
 [![Plugin checks](https://github.com/seatlayer/seatlayer-wordpress/actions/workflows/ci.yml/badge.svg)](https://github.com/seatlayer/seatlayer-wordpress/actions/workflows/ci.yml)
 [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/seatlayer-seating-charts.svg)](https://wordpress.org/plugins/seatlayer-seating-charts/)
@@ -15,6 +13,8 @@ stadium scale.
 
 Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
 publish them on WordPress with a Gutenberg block or shortcode.
+
+![SeatLayer interactive seating charts](.wordpress-org/banner-1544x500.png)
 
 [SeatLayer plugin on WordPress.org](https://wordpress.org/plugins/seatlayer-seating-charts/) ·
 [WordPress seating chart integration guide](https://docs.seatlayer.io/integrations/wordpress/) ·
