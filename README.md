@@ -210,6 +210,12 @@ Content Security Policy.
 - [Choose the right SeatLayer integration](https://docs.seatlayer.io/start/choose-an-integration/)
   before deciding between the WordPress plugin, a hosted event page, and a
   custom checkout.
+- [Sell tickets on your own website](https://seatlayer.io/sell-tickets-on-your-website/)
+  with the seat map on your pages and SeatLayer's checkout.
+- [Design the venue in the SeatLayer Venue Designer](https://seatlayer.io/venue-designer/)
+  from a template, your floor plan, an SVG or DXF file, or a description.
+- [Sell at the box office and check tickets in at the door](https://seatlayer.io/box-office/)
+  from the same live seat map in your SeatLayer account.
 - [Connect seat holds to secure server-side checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/)
   when you need a gateway or cart the plugin does not cover.
 - [Run the complete checkout example](https://docs.seatlayer.io/examples/complete-checkout/)
