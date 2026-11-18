@@ -8,7 +8,7 @@
 
 The official WordPress seating chart plugin for SeatLayer. It adds interactive
 seating charts and seat maps to WordPress for event ticket sales with reserved
-seats. Buyers choose exact seats or find a group with Best Available, explore 3D for venues up to 30,000 seats on phones and 60,000 on desktop on supported devices, and pay through SeatLayer's
+seats. Buyers choose exact seats or find a group with Best Available, explore 3D for venues up to 60,000 seats on supported devices, and pay through SeatLayer's
 checkout, with ticket money paid to the organizer's own account. SeatLayer is
 seating chart and reserved-seat ticketing software built for venues up to
 stadium scale.
@@ -36,7 +36,7 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 - Reserved rows, tables, booths and mixed general-admission areas
 - Accessible-seat labels and floor navigation from the published chart
 - Best-available seating for buyers who want a suitable group together
-- Interactive 3D with the view from each seat, for venues up to 30,000 seats on phones and 60,000 on desktop,
+- Interactive 3D with the view from each seat, for venues up to 60,000 seats,
   on supported browsers and devices, with the complete 2D picker as
   fallback
 - Ticket tiers, prices, and active offers shown in the selection journey
@@ -124,7 +124,7 @@ external-service disclosures, and frequently asked questions.
 Install the free SeatLayer plugin, set up your venue and event in your SeatLayer
 account, and add the SeatLayer seating chart block or the `[seatlayer_chart]`
 shortcode to any page. Buyers pick exact seats or a group with Best Available,
-can look at the venue in 3D for venues up to 30,000 seats on phones and 60,000 on desktop, and keep their seats
+can look at the venue in 3D for venues up to 60,000 seats, and keep their seats
 on hold while they pay. Checkout supports 14 payment gateways, including Stripe,
 PayPal and Square, and ticket money is paid to your own account. SeatLayer
 charges $0.50 per ticket, with your first 25 free.

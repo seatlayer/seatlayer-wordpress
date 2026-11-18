@@ -44,7 +44,7 @@ Try the live stadium demo: https://app.seatlayer.io/demo/play/century-stadium-20
 = 3D seat views and mobile seat selection =
 
 Buyers can switch between the map and **interactive 3D**, with the view from
-each seat, for venues up to 30,000 seats on phones and 60,000 on desktop, on supported browsers and devices,
+each seat, for venues up to 60,000 seats, on supported browsers and devices,
 with a full 2D fallback. Explore SeatLayer's
 [3D seating charts](https://seatlayer.io/3d-seat-map/).
 
