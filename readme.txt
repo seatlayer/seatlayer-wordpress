@@ -8,14 +8,13 @@ Stable tag: 0.2.6
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Free WordPress seating chart and ticketing plugin. Buyers pick exact seats and pay through your own gateway. Block or shortcode, stadium scale.
+Free WordPress seating chart and ticketing plugin. Buyers pick exact seats and pay into your own account. Block or shortcode, stadium scale.
 
 == Description ==
 
 SeatLayer is a WordPress seating chart plugin for selling event tickets with
 reserved seats. Add an interactive seat map to a page or post, let visitors
-choose where they sit, and accept payment through your own connected payment
-gateway.
+choose where they sit, and take payment into your own account.
 
 Build theatre, auditorium, concert and dinner-show seating plans in SeatLayer,
 then publish them on WordPress with a Gutenberg block or shortcode.
@@ -26,8 +25,8 @@ then publish them on WordPress with a Gutenberg block or shortcode.
 = Scale evidence =
 
 Tested on public venue files in September 2026: a 200,000-seat stadium is
-ready to browse in 1.95 s, and one event handled 10,000 buyers at once with a
-9 ms seat hold (p99) and zero server errors. Method and every run:
+ready to browse in 1.95 s on desktop. For buyers on one event at the same time,
+see the stadium answer under Frequently Asked Questions. Method and every run:
 https://github.com/seatlayer/seatlayer-performance ·
 Try the live stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k
 
@@ -44,8 +43,9 @@ Try the live stadium demo: https://app.seatlayer.io/demo/play/century-stadium-20
 
 = 3D seat views and mobile seat selection =
 
-Buyers can switch between the map and **interactive 3D** on supported browsers
-and devices, with a full 2D fallback. Explore SeatLayer's
+Buyers can switch between the map and **interactive 3D**, with the view from
+each seat, for venues up to 60,000 seats, on supported browsers and devices,
+with a full 2D fallback. Explore SeatLayer's
 [3D seating charts](https://seatlayer.io/3d-seat-map/).
 
 The responsive picker adapts to the space on your page, with touch selection,
@@ -61,8 +61,8 @@ colours come from your SeatLayer venue configuration.
   SeatLayer.
 * **Temporary seat holds** protect the selected inventory during checkout,
   with a countdown and automatic release when a hold expires.
-* **Confirmed bookings and ticket emails** follow successful payment through
-  the organizer's connected account.
+* **Confirmed bookings and ticket emails** follow successful payment into
+  the organizer's own account.
 
 SeatLayer manages inventory, payment totals and bookings centrally, without
 duplicating ticket inventory in your WordPress database.
@@ -83,19 +83,20 @@ dropdown. Scripts and styles load only on pages containing a chart.
 See the [WordPress seat map setup guide](https://docs.seatlayer.io/integrations/wordpress/)
 for block settings and shortcode options.
 
-= Accept payments through your own payment gateway =
+= Accept payments into your own payment account =
 
 **Hosted checkout:** buyers continue from seat selection to SeatLayer's hosted
-event page and pay through your own connected payment gateway.
+event page and pay, with the money paid into your own account.
 
-**Checkout from your WordPress page:** enable **Let buyers pay without leaving
-this site** under **Settings → SeatLayer**. In-page gateways collect payment on
-the page itself; a redirecting gateway opens its own secure checkout and returns
-the buyer to the WordPress page. Add your site's address once in SeatLayer so
+**Checkout from your WordPress page:** once in-page checkout is on for your
+SeatLayer account, enable **Let buyers pay without leaving this site** under
+**Settings → SeatLayer**. In-page gateways collect payment on the page itself;
+a redirecting gateway opens its own secure checkout and returns the buyer to
+the WordPress page. Add your site's address once in SeatLayer so
 the buyer returns to your page. Hosted checkout remains the fallback.
 
-Supported gateways: Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit and
-Flutterwave. Ticket money goes straight to your own account.
+SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square.
+Ticket money goes straight to your own account.
 
 Manage venue layouts, events, ticket prices, offers, orders, refunds and ticket
 delivery in the [SeatLayer dashboard](https://app.seatlayer.io/). Buyers get a
@@ -105,8 +106,8 @@ the door from a phone browser.
 = Pricing =
 
 The plugin is free. Selling is self-serve with no approval step: you need a free
-SeatLayer account, a published seating chart, an event and a connected payment
-gateway. SeatLayer charges $0.50 per confirmed ticket, and your first 25 tickets
+SeatLayer account, a published seating chart, an event and payments set up
+under Payments. SeatLayer charges $0.50 per confirmed ticket, and your first 25 tickets
 are free. There is no subscription and no percentage of the ticket price; your
 payment gateway charges its own processing fee. See
 [pricing](https://seatlayer.io/pricing/).
@@ -116,8 +117,9 @@ payment gateway charges its own processing fee. See
 1. Install and activate **SeatLayer Seating Charts**.
 2. Sign up free at [SeatLayer](https://app.seatlayer.io/), create and publish
    a venue chart, then create your event.
-3. Connect your payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago,
-   Xendit or Flutterwave) under **Payments** in the SeatLayer dashboard.
+3. Set up payments under **Payments** in the SeatLayer dashboard. SeatLayer
+   supports 14 payment gateways, including Stripe, PayPal and Square, and ticket
+   money is paid to your own account.
 4. Add the **SeatLayer seating chart** block or `[seatlayer_chart]` shortcode
    to a WordPress page and enter your event key.
 5. Check the seating chart and checkout flow, then publish your event page.
@@ -135,8 +137,8 @@ ticket, your first 25 tickets are free, and there is no subscription.
 = Is this a WordPress seating chart plugin or a full ticketing plugin? =
 
 Both, for seated events. WordPress renders the interactive seating chart and
-the seat picker, and the buyer completes checkout through your own connected
-payment gateway, so ticket money arrives in your own gateway account. Venue
+the seat picker, and the buyer completes checkout through the organizer's own
+payment account, so ticket money arrives in your own payment account. Venue
 layouts, inventory, holds, orders and ticket delivery stay in SeatLayer, which
 bills its hosted-ticket usage separately from your gateway's fees.
 
@@ -148,8 +150,8 @@ Elementor.
 
 = Which payment gateways can buyers use? =
 
-Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit and Flutterwave, connected
-to your own account. Need another gateway? Request it from SeatLayer.
+SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square,
+paid to your own account. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
 
 = Do buyers get e-tickets with QR codes? =
 
@@ -159,11 +161,9 @@ browser.
 
 = Can I sell tickets for a stadium or arena from WordPress? =
 
-Yes. Stadium and arena charts use the same buyer renderer as the published
-large-venue benchmark, embedded on your own WordPress page. See
-[arena and stadium seating charts](https://seatlayer.io/arenas-stadiums/), and
-evaluate your own chart, WordPress theme and target devices before opening
-sales.
+Yes. SeatLayer's seat map handles stadium charts: a 200,000-seat stadium is
+ready to browse in 1.95 s on desktop. Tested at 10,000 simulated concurrent buyers on one 12,000-seat event (18 September 2026): engine-side hold latency p99 9 ms, zero server errors. Method, fixtures and run files: https://github.com/seatlayer/seatlayer-performance.
+Also evaluate your own chart, WordPress theme and target devices before opening sales.
 
 = Can I create the seating plan inside WordPress? =
 
@@ -178,16 +178,16 @@ without a chart uses a different ticketing flow.
 
 = Can I use it for a large theatre, arena or stadium? =
 
-The plugin uses SeatLayer's shared buyer renderer. Read the
+The plugin uses SeatLayer's seat map. Read the
 [large-chart renderer measurements](https://docs.seatlayer.io/platform/renderer-performance/)
-for what that renderer does on big venue charts. Those measure the shared
-renderer; also evaluate your own chart, WordPress theme and target devices
-before opening sales.
+for what it does on big venue charts: 200,000 seats chart-ready in 1.95 s on
+desktop, in a local production build. Those measure the seat map itself; also
+evaluate your own chart, WordPress theme and target devices before opening sales.
 
 = Does this integrate with WooCommerce checkout? =
 
 It can run on a site that also uses WooCommerce. SeatLayer ticket purchases go
-through your own connected payment gateway and do not create WooCommerce cart
+through the organizer's own payment account and do not create WooCommerce cart
 line items or orders.
 
 = Can two buyers purchase the same seat? =
@@ -239,9 +239,9 @@ For hosted checkout, redirects the buyer to
 `https://app.seatlayer.io/e/EVENT?hold=HOLD_ID` after seat selection.
 The URL carries the event key and hold ID, not an amount or buyer details.
 
-**The organizer's payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago, Xendit or Flutterwave)**
+**The organizer's payment gateway (one of the 14 SeatLayer supports, such as Stripe, PayPal or Square)**
 
-After seat selection, processes payment through the organizer's connected
+After seat selection, processes payment into the organizer's own payment
 account. SeatLayer sends the amount, currency and buyer email needed for
 payment. Card details go directly to the payment provider and never pass
 through this plugin or your WordPress database.
@@ -250,9 +250,16 @@ through this plugin or your WordPress database.
 [PayPal Privacy Statement](https://www.paypal.com/myaccount/privacy/privacyhub) ·
 [Razorpay Privacy Policy](https://razorpay.com/privacy) ·
 [Tap Privacy Policy](https://www.tap.company/en-kw/privacy) ·
-[Mercado Pago Privacy Policy](https://www.mercadopago.com/privacy) ·
+[Mercado Pago (Mercado Libre) Privacy Statement](https://www.mercadolibre.com/privacy/privacy-notice) ·
 [Xendit Privacy Policy](https://www.xendit.co/en/privacy-policy/) ·
 [Flutterwave Privacy Policy](https://flutterwave.com/us/privacy-policy) ·
+[Square Privacy Notice](https://squareup.com/us/en/legal/general/privacy) ·
+[Braintree (a PayPal service) Privacy Statement](https://www.paypal.com/myaccount/privacy/privacyhub) ·
+[Authorize.Net (a Visa company) Privacy Policy](https://www.visa.com/en-us/legal/privacy-policy) ·
+[Checkout.com Privacy Notice](https://www.checkout.com/legal/privacy-notice) ·
+[Mollie Privacy Statement](https://www.mollie.com/legal/privacy) ·
+[Paystack Merchant Privacy Policy](https://paystack.com/privacy/merchant) ·
+[iyzico Privacy Policy](https://www.iyzico.com/en/privacy-policy) ·
 [SeatLayer Terms of Service](https://seatlayer.io/terms) ·
 [SeatLayer Privacy Policy](https://seatlayer.io/privacy)
 

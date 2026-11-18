@@ -8,10 +8,10 @@
 
 The official WordPress seating chart plugin for SeatLayer. It adds interactive
 seating charts and seat maps to WordPress for event ticket sales with reserved
-seats. Buyers choose exact seats or find a group with Best Available, explore 3D
-on supported devices, and check out through the payment gateway the organizer
-connects to SeatLayer. SeatLayer is seating chart and reserved-seat ticketing
-software built for venues up to stadium scale.
+seats. Buyers choose exact seats or find a group with Best Available, explore 3D for venues up to 60,000 seats on supported devices, and pay through SeatLayer's
+checkout, with ticket money paid to the organizer's own account. SeatLayer is
+seating chart and reserved-seat ticketing software built for venues up to
+stadium scale.
 
 Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
 publish them on WordPress with a Gutenberg block or shortcode.
@@ -23,11 +23,11 @@ publish them on WordPress with a Gutenberg block or shortcode.
 [Buyer seat-map demo](https://app.seatlayer.io/demo/play/grand-theatre) ·
 [All live demos](https://seatlayer.io/demo/)
 
-**Start here:** [Quickstart](https://docs.seatlayer.io/start/quickstart/) · [Holds and checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/) · [WordPress guide](https://docs.seatlayer.io/integrations/wordpress/) · [SDK catalog](https://docs.seatlayer.io/sdk-catalog.json) · [Pricing](https://seatlayer.io/pricing/): $0 entry, 100 free confirmed-sold-seat credits per organization each month, then $0.10 down to $0.05 a credit, and credits never expire.
+**Start here:** [Quickstart](https://docs.seatlayer.io/start/quickstart/) · [Holds and checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/) · [WordPress guide](https://docs.seatlayer.io/integrations/wordpress/) · [SDK catalog](https://docs.seatlayer.io/sdk-catalog.json) · [Pricing](https://seatlayer.io/pricing/): $0.50 per ticket, your first 25 free.
 
 ## Scale evidence
 
-Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 September 2026: 200,000 seats chart-ready in 1.95 s, desktop, local production build. Fixtures, method and run logs: https://github.com/seatlayer/seatlayer-performance. Live 200,000-seat stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k. This is renderer evidence, not a concurrent-buyer claim.
+Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 September 2026: 200,000 seats chart-ready in 1.95 s, desktop, local production build. Tested at 10,000 simulated concurrent buyers on one 12,000-seat event (18 September 2026): engine-side hold latency p99 9 ms, zero server errors. Method, fixtures and run files: https://github.com/seatlayer/seatlayer-performance. Live 200,000-seat stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k.
 
 ## The buyer experience
 
@@ -36,13 +36,14 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 - Reserved rows, tables, booths and mixed general-admission areas
 - Accessible-seat labels and floor navigation from the published chart
 - Best-available seating for buyers who want a suitable group together
-- Interactive 3D on supported browsers and devices, with the complete 2D picker
-  as fallback
+- Interactive 3D with the view from each seat, for venues up to 60,000 seats,
+  on supported browsers and devices, with the complete 2D picker as
+  fallback
 - Ticket tiers, prices, and active offers shown in the selection journey
 - Temporary seat holds that protect the buyer while they check out
 - Responsive controls designed for desktop and mobile screens
 - Chart branding and category colours configured in SeatLayer
-- Payment through the organizer's own connected payment gateway account
+- Payment into the organizer's own account, through one of SeatLayer's 14 payment gateways
 - Email ticket confirmation after a completed order
 
 Seat availability, holds, prices, offers, and order totals remain authoritative
@@ -51,10 +52,10 @@ duplicating ticketing state in the WordPress database.
 
 See [interactive 3D seat views](https://seatlayer.io/3d-seat-map/) and
 [best-available seat selection](https://docs.seatlayer.io/buyer-sdk/best-available/)
-for the corresponding buyer workflows. The same renderer has a public
+for the buyer workflows. The same seat map has a public
 [200,000-seat stadium demo](https://app.seatlayer.io/demo/play/century-stadium-200k)
 with [published measurements](https://docs.seatlayer.io/platform/renderer-performance/);
-evaluate your own WordPress page, theme and target devices before opening sales.
+evaluate your own chart, WordPress theme and target devices before opening sales.
 
 ## For organizers
 
@@ -78,10 +79,11 @@ WordPress configuration and remains the automatic fallback.
 ### In-page checkout (optional)
 
 Enable **Let buyers pay without leaving this site** under
-**Settings → SeatLayer**. An in-page gateway collects payment on the page; a
-redirecting gateway opens its own secure checkout and returns the buyer to the
-original WordPress page. Add your site's address once in SeatLayer so the buyer
-returns to your page.
+**Settings → SeatLayer** once in-page checkout is on for your SeatLayer account;
+until then the setting changes nothing and buyers use hosted checkout. Some
+gateways collect payment on the page itself; a gateway that opens its own secure
+checkout returns the buyer to the same WordPress page. Add your site's address
+once in SeatLayer so the buyer returns to your page.
 
 ## Quick start
 
@@ -92,8 +94,9 @@ See [pricing](https://seatlayer.io/pricing/).
 1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
 2. Create a venue, chart, event, ticket tiers, and any offers in the
    [SeatLayer dashboard](https://app.seatlayer.io/).
-3. Connect your payment gateway (Stripe, PayPal, Razorpay, Tap, Mercado Pago,
-   Xendit or Flutterwave) under **Payments**.
+3. Set up payments under **Payments**. SeatLayer supports 14 payment gateways,
+   including Stripe, PayPal and Square, and ticket money is paid to your own
+   account ([all 14](https://seatlayer.io/payments/)).
 4. Add the **SeatLayer seating chart** block to a WordPress page.
 5. Enter or select the event and publish the page.
 
@@ -118,13 +121,13 @@ external-service disclosures, and frequently asked questions.
 
 ### How do I sell tickets with seat selection on WordPress?
 
-Install the SeatLayer plugin, create
-your venue, chart, and event in the
-[SeatLayer dashboard](https://app.seatlayer.io/), connect your payment gateway
-under Payments, then add the **SeatLayer seating chart** block to a page and
-choose the event. Buyers pick exact seats on your WordPress page, the selection
-is held on SeatLayer's servers, and payment completes through your own gateway
-account. Checkout follows the hosted or eligible in-page flow described above.
+Install the free SeatLayer plugin, set up your venue and event in your SeatLayer
+account, and add the SeatLayer seating chart block or the `[seatlayer_chart]`
+shortcode to any page. Buyers pick exact seats or a group with Best Available,
+can look at the venue in 3D for venues up to 60,000 seats, and keep their seats
+on hold while they pay. Checkout supports 14 payment gateways, including Stripe,
+PayPal and Square, and ticket money is paid to your own account. SeatLayer
+charges $0.50 per ticket, with your first 25 free.
 
 ### Is there a WordPress event ticketing plugin with a seat map?
 
@@ -136,25 +139,24 @@ dashboard, and authoritative server-side holds prevent overlapping seat sales.
 
 ### Can I use my own payment provider?
 
-Yes. Payment runs through your own account on Stripe, PayPal, Razorpay, Tap,
-Mercado Pago, Xendit or Flutterwave, so the money arrives in your own gateway
-account rather than being collected on your behalf. SeatLayer computes the
-authoritative amount from its own hold records and never accepts a price from
-the WordPress page. Need another gateway? Request it from SeatLayer.
+Yes. SeatLayer supports 14 payment gateways, including Stripe, PayPal and
+Square, and ticket money is paid to your own account rather than collected on
+your behalf. SeatLayer works out the amount from its own hold records and never
+accepts a price from the WordPress page. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
 
 ### Does this work with WooCommerce?
 
 The plugin can run on a site that also uses WooCommerce. SeatLayer ticket
-purchases run through your own connected payment gateway and do not create
+purchases run through the organizer's own payment account and do not create
 WooCommerce cart line items or orders.
 
 ### Can two people buy the same seat?
 
-No. A temporary hold reserves the buyer's selected inventory on SeatLayer's
-servers during checkout. Only one hold can exist per seat. If the buyer does
-not pay in time, the hold expires automatically and the seat returns to sale.
-In the rare case where a payment succeeds after the hold expired, the buyer is
-refunded automatically and the order is flagged in the SeatLayer dashboard.
+No. A temporary hold gives each selected seat to one buyer while they check
+out, and only one hold can exist per seat. If the buyer does not pay in time,
+the hold expires and the seat returns to sale. If a payment arrives after its
+hold expired and the seats can no longer be booked, the buyer is refunded
+automatically and the order is flagged in your SeatLayer dashboard.
 
 ### Do I need a SeatLayer secret key?
 
