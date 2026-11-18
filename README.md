@@ -106,7 +106,8 @@ evaluate your own chart, WordPress theme and target devices before opening sales
 - Use `[seatlayer_chart event="ev_..."]` in shortcode-based builders
 - Select events from a dropdown after adding an optional SeatLayer secret key
 - Keep using event keys without storing a secret key in WordPress
-- Load the SeatLayer browser SDK only on pages that contain a seating chart
+- Load the SeatLayer browser SDK only on pages that contain a seating chart, with no inline JavaScript, so it
+  works under a strict Content Security Policy
 - Manage venue layouts, ticket types, pricing, offers, orders, and issued
   tickets from the SeatLayer dashboard
 
@@ -144,13 +145,8 @@ charges $0.50 per ticket, with your first 25 free.
 Yes. SeatLayer Seating Charts puts a live seat map on any WordPress page, with
 numbered seats, tables, booths and standing areas, and SeatLayer runs the
 checkout, orders, QR and PDF tickets and the confirmation email. You design
-venues in the SeatLayer Designer and manage events, prices and orders in your
+venues in the SeatLayer Venue Designer and manage events, prices and orders in your
 SeatLayer account, so no ticket data is stored in WordPress.
-
-### Is the plugin free?
-
-Yes. The plugin is free and MIT licensed. SeatLayer charges $0.50 per confirmed
-ticket, your first 25 tickets are free, and there is no subscription.
 
 ### Can I use my own payment provider?
 
@@ -187,21 +183,6 @@ out, and only one hold can exist per seat. If the buyer does not pay in time,
 the hold expires and the seat returns to sale. If a payment arrives after its
 hold expired and the seats can no longer be booked, the buyer is refunded
 automatically and the order is flagged in your SeatLayer dashboard.
-
-### Do I need a SeatLayer secret key?
-
-No. The public seating chart works with the event key alone, which is not a
-secret. A secret key is optional, is stored only in your WordPress database, is
-used server-side only to list your events in a dropdown in the block editor,
-and is never sent to a browser. Leave it blank and paste event keys by hand if
-you would rather not store it.
-
-### Will the plugin slow down my site?
-
-No. The seating chart's stylesheet, the plugin's script and SeatLayer's browser
-SDK load only on pages that show a chart, so every other page loads no plugin
-files. The plugin adds no inline JavaScript, so it also works under a strict
-Content Security Policy.
 
 ## Continue your WordPress integration
 
