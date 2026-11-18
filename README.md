@@ -147,12 +147,32 @@ checkout, orders, QR and PDF tickets and the confirmation email. You design
 venues in the SeatLayer Designer and manage events, prices and orders in your
 SeatLayer account, so no ticket data is stored in WordPress.
 
+### Is the plugin free?
+
+Yes. The plugin is free and MIT licensed. SeatLayer charges $0.50 per confirmed
+ticket, your first 25 tickets are free, and there is no subscription.
+
 ### Can I use my own payment provider?
 
 Yes. SeatLayer supports 14 payment gateways, including Stripe, PayPal and
 Square, and ticket money is paid to your own account rather than collected on
 your behalf. SeatLayer works out the amount from its own hold records and never
 accepts a price from the WordPress page. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
+
+### Can buyers see the view from their seat in 3D?
+
+Yes. Every chart for venues up to 60,000 seats opens in 3D with the view from
+each seat, with no extra modelling and no extra charge. Buyers switch between
+the seat map and 3D on supported browsers and devices, and the 2D map is always
+there.
+
+### Can I sell at the box office and scan tickets at the door?
+
+Yes, from your SeatLayer account. Staff sell at the counter from the same live
+seat map and print on an 80 mm roll or A4, and a seat sold at the counter is
+gone from your WordPress page at once. At the door, staff scan each ticket with
+the SeatLayer iPhone app or any phone browser, and both are included in the
+$0.50 ticket price.
 
 ### Does this work with WooCommerce?
 

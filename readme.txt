@@ -159,11 +159,26 @@ Yes. Each buyer gets a confirmation email with a QR code and a printable PDF
 ticket for every seat, and your staff scan tickets at the door with the
 SeatLayer iPhone app or any phone browser.
 
+= Can I sell at the box office and scan tickets at the door? =
+
+Yes, from your SeatLayer account. Staff sell at the counter from the same live
+seat map and print on an 80 mm roll or A4, and a seat sold at the counter is
+gone from your WordPress page at once. At the door, staff scan each ticket with
+the SeatLayer iPhone app or any phone browser, and both are included in the
+$0.50 ticket price.
+
 = Can I sell tickets for a stadium or arena from WordPress? =
 
 Yes. SeatLayer's seat map handles stadium charts: a 200,000-seat stadium is
 ready to browse in 1.95 s on desktop. Tested at 10,000 simulated concurrent buyers on one 12,000-seat event (18 September 2026): engine-side hold latency p99 9 ms, zero server errors. Method, fixtures and run files: https://github.com/seatlayer/seatlayer-performance.
 Also evaluate your own chart, WordPress theme and target devices before opening sales.
+
+= Can buyers see the view from their seat in 3D? =
+
+Yes. Every chart for venues up to 60,000 seats opens in 3D with the view from
+each seat, with no extra modelling and no extra charge. Buyers switch between
+the seat map and 3D on supported browsers and devices, and the 2D map is always
+there.
 
 = Can I create the seating plan inside WordPress? =
 
