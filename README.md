@@ -194,7 +194,8 @@ automatically and the order is flagged in your SeatLayer dashboard.
 - [Sell tickets on your own website](https://seatlayer.io/sell-tickets-on-your-website/)
   with the seat map on your pages and SeatLayer's checkout.
 - [Design the venue in the SeatLayer Venue Designer](https://seatlayer.io/venue-designer/)
-  from a template, your floor plan, an SVG or DXF file, or a description.
+  from a template, your floor plan or an SVG or DXF file, or describe the venue to a chat
+  AI and paste the venue file it writes.
 - [Sell at the box office and check tickets in at the door](https://seatlayer.io/box-office/)
   from the same live seat map in your SeatLayer account.
 - [Connect seat holds to secure server-side checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/)

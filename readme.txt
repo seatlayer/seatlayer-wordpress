@@ -182,9 +182,8 @@ there.
 
 = Can I create the seating plan inside WordPress? =
 
-You draw it in the SeatLayer Venue Designer: start from a template, click your
-floor plan into seats, bring an SVG or DXF file, or describe the venue to an
-AI. Then show the published chart on any WordPress page with the block or
+You draw it in the SeatLayer Venue Designer: start from a template, click your floor plan into seats, bring an SVG or DXF
+file, or describe the venue to a chat AI and paste the venue file it writes. Then show the published chart on any WordPress page with the block or
 shortcode. The plugin provides the buyer picker and display settings.
 
 = Can I use table seating or general admission? =
