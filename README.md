@@ -141,11 +141,11 @@ charges $0.50 per ticket, with your first 25 free.
 
 ### Is there a WordPress event ticketing plugin with a seat map?
 
-This plugin is the seat-map front end for SeatLayer's reserved-seating and
-ticketing platform. WordPress renders the interactive chart, while venue
-layouts, ticket tiers, pricing, offers, live availability, orders, and ticket
-delivery are managed in SeatLayer. Venue design stays in the SeatLayer
-dashboard, and authoritative server-side holds prevent overlapping seat sales.
+Yes. SeatLayer Seating Charts puts a live seat map on any WordPress page, with
+numbered seats, tables, booths and standing areas, and SeatLayer runs the
+checkout, orders, QR and PDF tickets and the confirmation email. You design
+venues in the SeatLayer Designer and manage events, prices and orders in your
+SeatLayer account, so no ticket data is stored in WordPress.
 
 ### Can I use my own payment provider?
 
@@ -178,10 +178,10 @@ you would rather not store it.
 
 ### Will the plugin slow down my site?
 
-The seating chart's stylesheet, the plugin's mount script, and SeatLayer's
-browser SDK load only when a page renders a chart. Pages without a chart load
-no plugin assets. This release pins the SDK to `seatlayer-js@0.92.5`, and the
-plugin emits no inline JavaScript.
+No. The seating chart's stylesheet, the plugin's script and SeatLayer's browser
+SDK load only on pages that show a chart, so every other page loads no plugin
+files. The plugin adds no inline JavaScript, so it also works under a strict
+Content Security Policy.
 
 ## Continue your WordPress integration
 

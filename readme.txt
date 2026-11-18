@@ -155,9 +155,9 @@ paid to your own account. Need a payment gateway that is not among the 14? Ask S
 
 = Do buyers get e-tickets with QR codes? =
 
-Yes. Each buyer gets a confirmation email with a QR code and printable PDF
-ticket for every seat, and you can scan tickets at the door from a phone
-browser.
+Yes. Each buyer gets a confirmation email with a QR code and a printable PDF
+ticket for every seat, and your staff scan tickets at the door with the
+SeatLayer iPhone app or any phone browser.
 
 = Can I sell tickets for a stadium or arena from WordPress? =
 
@@ -167,9 +167,10 @@ Also evaluate your own chart, WordPress theme and target devices before opening 
 
 = Can I create the seating plan inside WordPress? =
 
-Create and edit venues in the [seating chart designer](https://seatlayer.io/venue-designer/),
-then embed the published chart on WordPress. The plugin provides the buyer
-picker and display settings.
+You draw it in the SeatLayer Venue Designer: start from a template, click your
+floor plan into seats, bring an SVG or DXF file, or describe the venue to an
+AI. Then show the published chart on any WordPress page with the block or
+shortcode. The plugin provides the buyer picker and display settings.
 
 = Can I use table seating or general admission? =
 
@@ -192,9 +193,9 @@ line items or orders.
 
 = Can two buyers purchase the same seat? =
 
-Only one active hold can own a seat; expired holds release inventory for sale.
-If payment completes after a hold expires and booking fails, SeatLayer refunds
-the buyer automatically and flags the order.
+No. Only one active hold can own a seat, and an expired hold returns its seats
+to sale. If a payment completes after its hold expired and the seat cannot be
+booked, SeatLayer refunds the buyer automatically and flags the order.
 
 = Where is my optional secret key stored? =
 
@@ -204,10 +205,9 @@ directly if you do not want to store it.
 
 = Can I build a custom seat booking integration? =
 
-Developers who need their own buyer controls, cart or payment flow can use the
-[JavaScript seat map SDK](https://docs.seatlayer.io/buyer-sdk/install/) and
-[SeatLayer seat booking API](https://seatlayer.io/developers/).
-The plugin provides the hosted ticketing flow described above.
+Yes. Developers who need their own buyer controls, cart or payment flow can use
+the SeatLayer JavaScript seat map SDK and the seat booking API instead. This
+plugin provides the hosted ticketing flow described above.
 
 == External services ==
 
