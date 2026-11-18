@@ -25,8 +25,8 @@ then publish them on WordPress with a Gutenberg block or shortcode.
 = Scale evidence =
 
 Tested on public venue files in September 2026: a 200,000-seat stadium is
-ready to browse in 1.95 s, and one event handled 10,000 buyers at once with a
-9 ms seat hold (p99) and zero server errors. Method and every run:
+ready to browse in 1.95 s on desktop. For buyers on one event at the same time,
+see the stadium answer under Frequently Asked Questions. Method and every run:
 https://github.com/seatlayer/seatlayer-performance ·
 Try the live stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k
 
@@ -151,8 +151,7 @@ Elementor.
 = Which payment gateways can buyers use? =
 
 SeatLayer supports 14 payment gateways, including Stripe, PayPal and Square,
-paid to your own account. Need a gateway that isn't listed? Request it from
-SeatLayer.
+paid to your own account. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
 
 = Do buyers get e-tickets with QR codes? =
 
@@ -251,7 +250,7 @@ through this plugin or your WordPress database.
 [PayPal Privacy Statement](https://www.paypal.com/myaccount/privacy/privacyhub) ·
 [Razorpay Privacy Policy](https://razorpay.com/privacy) ·
 [Tap Privacy Policy](https://www.tap.company/en-kw/privacy) ·
-[Mercado Pago Privacy Policy](https://www.mercadopago.com/privacy) ·
+[Mercado Pago (Mercado Libre) Privacy Statement](https://www.mercadolibre.com/privacy/privacy-notice) ·
 [Xendit Privacy Policy](https://www.xendit.co/en/privacy-policy/) ·
 [Flutterwave Privacy Policy](https://flutterwave.com/us/privacy-policy) ·
 [Square Privacy Notice](https://squareup.com/us/en/legal/general/privacy) ·

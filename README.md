@@ -142,8 +142,7 @@ dashboard, and authoritative server-side holds prevent overlapping seat sales.
 Yes. SeatLayer supports 14 payment gateways, including Stripe, PayPal and
 Square, and ticket money is paid to your own account rather than collected on
 your behalf. SeatLayer works out the amount from its own hold records and never
-accepts a price from the WordPress page. Need a gateway that isn't listed?
-Request it from SeatLayer.
+accepts a price from the WordPress page. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
 
 ### Does this work with WooCommerce?
 
