@@ -1,6 +1,4 @@
-# SeatLayer WordPress Seating Chart Plugin
-
-![SeatLayer interactive seating charts](.wordpress-org/banner-1544x500.png)
+# SeatLayer Seating Chart Plugin for WordPress: sell reserved seats on your site
 
 [![Plugin checks](https://github.com/seatlayer/seatlayer-wordpress/actions/workflows/ci.yml/badge.svg)](https://github.com/seatlayer/seatlayer-wordpress/actions/workflows/ci.yml)
 [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/seatlayer-seating-charts.svg)](https://wordpress.org/plugins/seatlayer-seating-charts/)
@@ -9,12 +7,28 @@
 The official WordPress seating chart plugin for SeatLayer. It adds interactive
 seating charts and seat maps to WordPress for event ticket sales with reserved
 seats. Buyers choose exact seats or find a group with Best Available, explore 3D for venues up to 60,000 seats on supported devices, and pay through SeatLayer's
-checkout, with ticket money paid to the organizer's own account. SeatLayer is
-seating chart and reserved-seat ticketing software built for venues up to
-stadium scale.
+checkout, with ticket money paid to the organizer's own account.
 
 Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
 publish them on WordPress with a Gutenberg block or shortcode.
+
+![SeatLayer interactive seating charts](.wordpress-org/banner-1544x500.png)
+
+## What SeatLayer is
+
+SeatLayer is reserved-seat ticketing and seating software: organizers sell with hosted checkout,
+a box office, door check-in and season tickets, and platforms add the same seat maps, with 3D
+seat views, through the SeatLayer SDK and API. One chart drives the 2D map, the 3D venue and the
+view from each seat (3D for venues up to 60,000 seats; the 2D map benchmarked at 200,000 seats).
+
+[Website](https://seatlayer.io/) · [For developers](https://seatlayer.io/developers/) ·
+[Season tickets](https://seatlayer.io/season-tickets/) · [Pricing](https://seatlayer.io/pricing/) ·
+[Live demo](https://seatlayer.io/demo/)
+
+This repository holds the WordPress plugin. The plugin shows single events; it
+has no season ticket block.
+
+## Try it
 
 [SeatLayer plugin on WordPress.org](https://wordpress.org/plugins/seatlayer-seating-charts/) ·
 [WordPress seating chart integration guide](https://docs.seatlayer.io/integrations/wordpress/) ·
@@ -25,9 +39,37 @@ publish them on WordPress with a Gutenberg block or shortcode.
 
 **Start here:** [Quickstart](https://docs.seatlayer.io/start/quickstart/) · [Holds and checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/) · [WordPress guide](https://docs.seatlayer.io/integrations/wordpress/) · [SDK catalog](https://docs.seatlayer.io/sdk-catalog.json) · [Pricing](https://seatlayer.io/pricing/): $0.50 per ticket, your first 25 free.
 
-## Scale evidence
+## Quick start
 
-Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 September 2026: 200,000 seats chart-ready in 1.95 s, desktop, local production build. Tested at 10,000 simulated concurrent buyers on one 12,000-seat event (18 September 2026): engine-side hold latency p99 9 ms, zero server errors. Method, fixtures and run files: https://github.com/seatlayer/seatlayer-performance. Live 200,000-seat stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k.
+Setup is self-serve with no approval step. The plugin is free; SeatLayer charges
+$0.50 per confirmed ticket, with your first 25 tickets free and no subscription.
+See [pricing](https://seatlayer.io/pricing/).
+
+1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
+2. Create a venue, chart, event, ticket tiers, and any offers in the
+   [SeatLayer dashboard](https://app.seatlayer.io/).
+3. Set up payments under **Payments**. SeatLayer supports 14 payment gateways,
+   including Stripe, PayPal and Square, and ticket money is paid to your own
+   account ([all 14](https://seatlayer.io/payments/)).
+4. Add the **SeatLayer seating chart** block to a WordPress page.
+5. Enter or select the event and publish the page.
+
+The public chart needs only the event key. A SeatLayer secret key is optional
+and is used server-side only to populate the block editor's event dropdown.
+
+## Shortcode
+
+```text
+[seatlayer_chart event="ev_123" locale="en" currency="USD"]
+```
+
+`event` is required. `height` (320 to 2000, default 640) and `max_selection`
+(1 to 50, default 10) are also accepted, and `locale` and `currency` are passed
+through to the seat picker. Currency is a display fallback; event prices remain
+authoritative.
+
+See [the WordPress.org readme](readme.txt) for the complete requirements,
+external-service disclosures, and frequently asked questions.
 
 ## The buyer experience
 
@@ -64,7 +106,8 @@ evaluate your own chart, WordPress theme and target devices before opening sales
 - Use `[seatlayer_chart event="ev_..."]` in shortcode-based builders
 - Select events from a dropdown after adding an optional SeatLayer secret key
 - Keep using event keys without storing a secret key in WordPress
-- Load the SeatLayer browser SDK only on pages that contain a seating chart
+- Load the SeatLayer browser SDK only on pages that contain a seating chart, with no inline JavaScript, so it
+  works under a strict Content Security Policy
 - Manage venue layouts, ticket types, pricing, offers, orders, and issued
   tickets from the SeatLayer dashboard
 
@@ -85,38 +128,6 @@ gateways collect payment on the page itself; a gateway that opens its own secure
 checkout returns the buyer to the same WordPress page. Add your site's address
 once in SeatLayer so the buyer returns to your page.
 
-## Quick start
-
-Setup is self-serve with no approval step. The plugin is free; SeatLayer charges
-$0.50 per confirmed ticket, with your first 25 tickets free and no subscription.
-See [pricing](https://seatlayer.io/pricing/).
-
-1. Install and activate **SeatLayer Seating Charts** from WordPress.org.
-2. Create a venue, chart, event, ticket tiers, and any offers in the
-   [SeatLayer dashboard](https://app.seatlayer.io/).
-3. Set up payments under **Payments**. SeatLayer supports 14 payment gateways,
-   including Stripe, PayPal and Square, and ticket money is paid to your own
-   account ([all 14](https://seatlayer.io/payments/)).
-4. Add the **SeatLayer seating chart** block to a WordPress page.
-5. Enter or select the event and publish the page.
-
-The public chart needs only the event key. A SeatLayer secret key is optional
-and is used server-side only to populate the block editor's event dropdown.
-
-## Shortcode
-
-```text
-[seatlayer_chart event="ev_123" locale="en" currency="USD"]
-```
-
-`event` is required. `height` (320 to 2000, default 640) and `max_selection`
-(1 to 50, default 10) are also accepted, and `locale` and `currency` are passed
-through to the seat picker. Currency is a display fallback; event prices remain
-authoritative.
-
-See [the WordPress.org readme](readme.txt) for the complete requirements,
-external-service disclosures, and frequently asked questions.
-
 ## Frequently asked questions
 
 ### How do I sell tickets with seat selection on WordPress?
@@ -131,11 +142,11 @@ charges $0.50 per ticket, with your first 25 free.
 
 ### Is there a WordPress event ticketing plugin with a seat map?
 
-This plugin is the seat-map front end for SeatLayer's reserved-seating and
-ticketing platform. WordPress renders the interactive chart, while venue
-layouts, ticket tiers, pricing, offers, live availability, orders, and ticket
-delivery are managed in SeatLayer. Venue design stays in the SeatLayer
-dashboard, and authoritative server-side holds prevent overlapping seat sales.
+Yes. SeatLayer Seating Charts puts a live seat map on any WordPress page, with
+numbered seats, tables, booths and standing areas, and SeatLayer runs the
+checkout, orders, QR and PDF tickets and the confirmation email. You design
+venues in the SeatLayer Venue Designer and manage events, prices and orders in your
+SeatLayer account, so no ticket data is stored in WordPress.
 
 ### Can I use my own payment provider?
 
@@ -143,6 +154,21 @@ Yes. SeatLayer supports 14 payment gateways, including Stripe, PayPal and
 Square, and ticket money is paid to your own account rather than collected on
 your behalf. SeatLayer works out the amount from its own hold records and never
 accepts a price from the WordPress page. Need a payment gateway that is not among the 14? Ask SeatLayer to add it.
+
+### Can buyers see the view from their seat in 3D?
+
+Yes. Every chart for venues up to 60,000 seats opens in 3D with the view from
+each seat, with no extra modelling and no extra charge. Buyers switch between
+the seat map and 3D on supported browsers and devices, and the 2D map is always
+there.
+
+### Can I sell at the box office and scan tickets at the door?
+
+Yes, from your SeatLayer account. Staff sell at the counter from the same live
+seat map and print on an 80 mm roll or A4, and a seat sold at the counter is
+gone from your WordPress page at once. At the door, staff scan each ticket with
+the SeatLayer iPhone app or any phone browser, and both are included in the
+$0.50 ticket price.
 
 ### Does this work with WooCommerce?
 
@@ -158,21 +184,6 @@ the hold expires and the seat returns to sale. If a payment arrives after its
 hold expired and the seats can no longer be booked, the buyer is refunded
 automatically and the order is flagged in your SeatLayer dashboard.
 
-### Do I need a SeatLayer secret key?
-
-No. The public seating chart works with the event key alone, which is not a
-secret. A secret key is optional, is stored only in your WordPress database, is
-used server-side only to list your events in a dropdown in the block editor,
-and is never sent to a browser. Leave it blank and paste event keys by hand if
-you would rather not store it.
-
-### Will the plugin slow down my site?
-
-The seating chart's stylesheet, the plugin's mount script, and SeatLayer's
-browser SDK load only when a page renders a chart. Pages without a chart load
-no plugin assets. This release pins the SDK to `seatlayer-js@0.92.5`, and the
-plugin emits no inline JavaScript.
-
 ## Continue your WordPress integration
 
 - [Read the WordPress seating chart integration guide](https://docs.seatlayer.io/integrations/wordpress/)
@@ -180,6 +191,13 @@ plugin emits no inline JavaScript.
 - [Choose the right SeatLayer integration](https://docs.seatlayer.io/start/choose-an-integration/)
   before deciding between the WordPress plugin, a hosted event page, and a
   custom checkout.
+- [Sell tickets on your own website](https://seatlayer.io/sell-tickets-on-your-website/)
+  with the seat map on your pages and SeatLayer's checkout.
+- [Design the venue in the SeatLayer Venue Designer](https://seatlayer.io/venue-designer/)
+  from a template, your floor plan or an SVG or DXF file, or describe the venue to a chat
+  AI and paste the venue file it writes.
+- [Sell at the box office and check tickets in at the door](https://seatlayer.io/box-office/)
+  from the same live seat map in your SeatLayer account.
 - [Connect seat holds to secure server-side checkout](https://docs.seatlayer.io/buyer-sdk/holds-and-checkout/)
   when you need a gateway or cart the plugin does not cover.
 - [Run the complete checkout example](https://docs.seatlayer.io/examples/complete-checkout/)
@@ -208,6 +226,10 @@ plugin emits no inline JavaScript.
 | Flutter | [`seatlayer`](https://pub.dev/packages/seatlayer) |
 | Android | [`seatlayer-android`](https://github.com/seatlayer/seatlayer-android) |
 | Server SDKs | [Node.js, Python, PHP, Ruby, .NET, Java, and Go](https://docs.seatlayer.io/server-sdk/install/) |
+
+## Scale evidence
+
+Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 September 2026: 200,000 seats chart-ready in 1.95 s, desktop, local production build. Tested at 10,000 simulated concurrent buyers on one 12,000-seat event (18 September 2026): engine-side hold latency p99 9 ms, zero server errors. Method, fixtures and run files: https://github.com/seatlayer/seatlayer-performance. Live 200,000-seat stadium demo: https://app.seatlayer.io/demo/play/century-stadium-200k.
 
 ## Development
 
