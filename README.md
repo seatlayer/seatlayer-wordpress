@@ -7,14 +7,26 @@
 The official WordPress seating chart plugin for SeatLayer. It adds interactive
 seating charts and seat maps to WordPress for event ticket sales with reserved
 seats. Buyers choose exact seats or find a group with Best Available, explore 3D for venues up to 60,000 seats on supported devices, and pay through SeatLayer's
-checkout, with ticket money paid to the organizer's own account. SeatLayer is
-seating chart and reserved-seat ticketing software built for venues up to
-stadium scale.
+checkout, with ticket money paid to the organizer's own account.
 
 Create theatre, auditorium, concert and dinner-show layouts in SeatLayer, then
 publish them on WordPress with a Gutenberg block or shortcode.
 
 ![SeatLayer interactive seating charts](.wordpress-org/banner-1544x500.png)
+
+## What SeatLayer is
+
+SeatLayer is reserved-seat ticketing and seating software: organizers sell with hosted checkout,
+a box office, door check-in and season tickets, and platforms add the same seat maps, with 3D
+seat views, through the SeatLayer SDK and API. One chart drives the 2D map, the 3D venue and the
+view from each seat (3D for venues up to 60,000 seats; the 2D map benchmarked at 200,000 seats).
+
+[Website](https://seatlayer.io/) · [For developers](https://seatlayer.io/developers/) ·
+[Season tickets](https://seatlayer.io/season-tickets/) · [Pricing](https://seatlayer.io/pricing/) ·
+[Live demo](https://seatlayer.io/demo/)
+
+This repository holds the WordPress plugin. The plugin shows single events; it
+has no season ticket block.
 
 [SeatLayer plugin on WordPress.org](https://wordpress.org/plugins/seatlayer-seating-charts/) ·
 [WordPress seating chart integration guide](https://docs.seatlayer.io/integrations/wordpress/) ·
