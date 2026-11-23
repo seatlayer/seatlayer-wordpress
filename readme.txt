@@ -231,7 +231,7 @@ requires a SeatLayer account. These services are contacted during use:
 **SeatLayer CDN (`cdn.seatlayer.io`)**
 
 Loads the seating-chart renderer only on pages containing a chart, from
-`https://cdn.seatlayer.io/seatlayer-js@0.92.5/seatlayer.js`.
+`https://cdn.seatlayer.io/seatlayer-js@1.0.0/seatlayer.js`.
 The browser sends its normal IP address, user agent and referrer; the plugin
 adds no visitor data to that script request.
 

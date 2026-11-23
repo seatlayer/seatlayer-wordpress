@@ -54,7 +54,7 @@ define( 'SEATLAYER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * Exact buyer SDK release verified with this plugin. Update the version and
  * its documented CDN URL together when preparing a plugin release.
  */
-define( 'SEATLAYER_SDK_VERSION', '0.92.5' );
+define( 'SEATLAYER_SDK_VERSION', '1.0.0' );
 
 require_once SEATLAYER_PLUGIN_DIR . 'includes/class-seatlayer-settings.php';
 require_once SEATLAYER_PLUGIN_DIR . 'includes/class-seatlayer-api.php';

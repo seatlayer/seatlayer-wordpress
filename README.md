@@ -235,7 +235,7 @@ Benchmarked on public 100,000-, 150,000- and 200,000-seat venue fixtures on 15 S
 
 The plugin intentionally has no runtime Composer or npm dependency. WordPress's
 HTTP layer handles the small server-side API surface, while the public seating
-experience loads the exact `seatlayer-js@0.92.5` browser SDK release only when
+experience loads the exact `seatlayer-js@1.0.0` browser SDK release only when
 required. Update `SEATLAYER_SDK_VERSION` and the documented CDN URL together
 after verifying the new release.
 
