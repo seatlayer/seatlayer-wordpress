@@ -4,7 +4,7 @@ Tags: seating chart, ticketing, event tickets, reserved seating, seat map
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.6
+Stable tag: 0.2.7
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -290,6 +290,9 @@ through this plugin or your WordPress database.
 9. Plugin settings page in wp-admin, where the optional server-side secret key and checkout return settings live
 
 == Changelog ==
+
+= 0.2.7 =
+* Update the pinned buyer SDK CDN release to the verified 1.0.0.
 
 = 0.2.6 =
 * Listing update: self-serve setup with no approval step, all seven supported payment gateways, current pricing, and new answers on price, page builders, gateways and QR tickets.
